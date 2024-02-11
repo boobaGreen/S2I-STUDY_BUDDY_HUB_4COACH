@@ -22,7 +22,7 @@ Ispirato da quest'ultimi anni si studio intenso e dagli obiettivi onu a cui a su
 The main request of the exercise was to develop system authentication and user registration and it was also necessary to provide some functionality as desired.
 Inspired by these last years of intense study and by the UN objectives which in turn inspire s2i and by the people I met in this adventure, I wanted to do something that stimulated group study since I personally and I have seen many others afterwards of me, especially at the beginning of a course, they find themselves very inclined towards group study, they launch some requests on the discord but it is not always easy to coordinate the timing but in my opinion it is a need for a service that could fill this small gap, support in ' meeting and creating small study groups. further details will follow
 
-## :bulbs: How it Works
+## :bulb: How it Works
 
 :it:
 La app avra' una Cover che e' la "Home page" quando non si e' loggati.
@@ -66,8 +66,7 @@ The style is deliberately very simple but I wanted to try to make the code reada
 "react-scroll-to-bottom": "^4.2.0",
 "yup": "^1.3.2"
 
-:it: 
-
+:it:
 
 ## :tv: Test Endpoint now !
 

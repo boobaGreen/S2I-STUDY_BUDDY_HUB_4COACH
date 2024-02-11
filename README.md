@@ -26,7 +26,7 @@ Inspired by these last years of intense study and by the UN objectives which in 
 
 ![Alt text](/pictures/finalProjextDoc.png "General Architecture")
 
-## :bulbs: How it Works
+## :bulb: How it Works
 
 :it:
 La app avra' una Cover che e' la "Home page" quando non si e' loggati.

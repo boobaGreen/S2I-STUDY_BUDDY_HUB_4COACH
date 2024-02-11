@@ -9,7 +9,7 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const compression = require('compression');
-const hpp = require('hpp');
+// const hpp = require('hpp');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
@@ -26,6 +26,7 @@ const app = express();
 // app.use(cors());
 console.log('process.env', process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'production') {
+  console.log('process.env.FRONT_SITE_WEB', process.env.FRONT_SITE_WEB);
   app.use(
     cors({
       origin: `${process.env.FRONT_SITE_WEB}`,
@@ -33,6 +34,7 @@ if (process.env.NODE_ENV === 'production') {
   );
 }
 if (process.env.NODE_ENV === 'development') {
+  console.log('process.env.FRONT_SITE_LOCAL', process.env.FRONT_SITE_LOCAL);
   app.use(
     cors({
       origin: `${process.env.FRONT_SITE_LOCAL}`,

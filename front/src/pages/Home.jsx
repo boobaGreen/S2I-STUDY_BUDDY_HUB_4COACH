@@ -83,7 +83,8 @@ function Home() {
           {filteredGroups?.length > 0 ? (
             // gropus+chat
             <div>
-              <div>
+              <div className="flex flex-col justify-center items-centerw-[90%] my-6 py-4 border-solid border-red-500 border-4">
+                <CustomTitle>Chat for {selectedGroup}</CustomTitle>
                 <Chat
                   username={userName}
                   room={selectedGroup}

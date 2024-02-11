@@ -10,7 +10,7 @@ function Card({ groupItem, userId, onSubmitHandler, isLoading }) {
 
   return (
     groupItem && (
-      <div className=" w-[12rem] sm:w-[15rem] h-[33rem] text-xl p-4 rounded-3xl bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)] text-[var(--color-text)] dark:text-[var(--color-text-dark)]">
+      <div className=" w-[12rem] sm:w-[15rem] h-[33rem] text-sm sm:text-base  lg:text-lg xl:text-xl p-4 rounded-3xl bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)] text-[var(--color-text)] dark:text-[var(--color-text-dark)]">
         <div className=" flex justify-center ">
           <CustomLineBig>
             <span>{groupItem.name}</span>
@@ -74,7 +74,7 @@ function Card({ groupItem, userId, onSubmitHandler, isLoading }) {
                   onClick={() => onSubmitHandler(groupItem?._id)}
                   disabled={isLoading}
                 >
-                  {isLoading ? <BeatLoader size={10} /> : <p>Sign In</p>}
+                  {isLoading ? <BeatLoader size={10} /> : <p>Join</p>}
                 </CustomButton>
               </div>
             )}

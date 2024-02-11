@@ -44,7 +44,7 @@ function Chat({ username, room, oldMessages }) {
   }, [socket]);
 
   return (
-    <div className="h-[75vh] mb-2 flex flex-col justify-between">
+    <div className="h-[75vh] mb-2 flex flex-col justify-between items-center ">
       <ScrollToBottom className="overflow-y-auto">
         {messageList?.map((messageContent, key) => {
           const isCurrentUser = messageContent.user === username;

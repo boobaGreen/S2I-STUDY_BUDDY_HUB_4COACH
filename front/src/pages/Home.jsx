@@ -75,32 +75,41 @@ function Home() {
   return (
     <OutletMainLayout>
       <OutletPrimaryTab>
-        <CustomTitle>My Groups</CustomTitle>
+        <div className="hidden md:blocK">
+          <CustomTitle>My Groups</CustomTitle>
+        </div>
+        <div className="block md:hidden">
+          <CustomTitle size={"small"}>My Groups</CustomTitle>
+        </div>
         {/* (groups+chat or message) */}
         <div className="mt-12 flex flex-col justify-center items-center">
           {filteredGroups?.length > 0 ? (
             // groips+chat
-            <div>
-              <div className="flex flex-col justify-center items-center w-full mt-6 mb-8 py-4 border-solid  border-4">
+            <div className="max-w-[95%] flex flex-col justify-center items-center">
+              <div className="flex flex-col justify-center items-center  mt-6 mb-8 py-4 border-solid border-4">
                 {selectedName ? (
                   <div className="flex flex-col justify-center items-center">
-                    <CustomTitle>Chat for {selectedName}</CustomTitle>
-                    <CustomTitle>{selectedName}</CustomTitle>
-                    <CustomTitle>Group</CustomTitle>
+                    <CustomTitle size={"medium"}>Chat for</CustomTitle>
+                    <CustomTitle size={"small"}>{selectedName}</CustomTitle>
+                    <CustomTitle size={"medium"}>Group</CustomTitle>
                   </div>
                 ) : (
                   <div className="flex flex-col justify-center items-center">
-                    <CustomTitle>Choose</CustomTitle>
-                    <CustomTitle>a group</CustomTitle>
-                    <CustomTitle>chat button</CustomTitle>
-                    <CustomTitle>to start chat</CustomTitle>
+                    <CustomTitle size={"medium"}>Choose</CustomTitle>
+                    <CustomTitle size={"medium"}>a group</CustomTitle>
+                    <CustomTitle size={"medium"}>chat button</CustomTitle>
+                    <CustomTitle size={"medium"}>💬</CustomTitle>
+                    <CustomTitle size={"medium"}>to start chat</CustomTitle>
+                    <CustomTitle size={"medium"}>⬇️</CustomTitle>
                   </div>
                 )}
-                <Chat
-                  username={userName}
-                  room={selectedName}
-                  oldMessages={messages}
-                />
+                <div className="max-w-[95%]">
+                  <Chat
+                    username={userName}
+                    room={selectedName}
+                    oldMessages={messages}
+                  />
+                </div>
               </div>
               <div className="flex flex-col 2xl:flex-row gap-8 ">
                 {filteredGroups.map((group, key) => {

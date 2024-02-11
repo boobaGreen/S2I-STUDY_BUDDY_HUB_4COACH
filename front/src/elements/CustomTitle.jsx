@@ -2,6 +2,7 @@ import React from "react";
 const sizeToClass = {
   medium: "text-3xl",
   small: "text-2xl",
+  xs: "text-base",
   default: "text-4xl",
 };
 const CustomTitle = ({ size = "default", children }) => {

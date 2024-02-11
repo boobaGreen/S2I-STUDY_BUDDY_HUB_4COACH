@@ -29,6 +29,7 @@ For simplicity I added a `config.fake` file which should serve to simplify the d
 
 :it:
 Per il settings del progetto Render.com ci chiedera' di scegliere una repo da Github, nel nostro progetto indicheremo la cartella back perche' il link della repo punta all'intero progetto invece noi vogliamo scendere nella cartella `\back`.
+Il progetto e' da lasciare cosi come e' sara' cura di Render.com creare la build , e poi deployare e lanciare il server.
 Inoltre attenzione ad inserire come build command "yarn" e come start command `node server.js`nel mio caso o il file principale del back in generale.
 Scegliamo yarn anche se in locale usaimo npm perhc'e render funziona meglio cosi per node js.
 :uk:

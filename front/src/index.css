@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* MAIN Color Table  */
+  --color-bg: #ccdf23;
+  --color-bg-dark: #0d2f25;
+
+  --color-bg-trasparent-dark: rgba(13, 47, 37, 0.88);
+  --color-bg-trasparent: rgba(204, 223, 35, 0.88);
+
+  --color-text: #0d2f25;
+  --color-text-dark: #fafafa;
+  /* TAB Color Table */
+  --color-bg-tab: #d3c1d6;
+  --color-bg-tab-dark: #3c534d;
+  --color-text-tab: #1f2937;
+  --color-text-tab-dark: #f3f4f6;
+  /* BUTTON Color Table */
+  --color-btn-bg: #a0cbbf;
+  --color-btn-dark-bg: #65a30d;
+  --color-btn-hover-bg: #05bd88;
+  --color-btn-dark-hover-bg: #bef264;
+  --color-btn-text: #0d2f25;
+  --color-btn-dark-text: #fff;
+  /* INPUT Color Table */
+  --color-text-input: #8b0989;
+  --color-text-input-dark: #083225;
+  /* ERROR Color Table */
+  --color-error: #c83592;
+  --color-error-dark: #f3e7f0;
+  /* SPINNER Color Table */
+  --color-spinner: #a0cbbf;
+  --color-spinner-dark: #bef264;
+  /* MESSAGE Color Table */
+  --color-mes-send-bg: #d8e08d;
+  --color-mes-send-bg-dark: #d4e4cc;
+  --color-mes-receive-bg: #c4e00f;
+  --color-mes-receive-bg-dark: #cce4e1;
+}
+
+/* Reset some basic elements */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* Add box-sizing to all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.customButton {
+  background-color: #a0cbbf;
+  color: #0d2f25;
+  transition: background-color 0.3s; /* Add a smooth transition for the color change */
+}
+
+.customButton:hover {
+  background-color: #05bd88; /* Change this to the desired hover background color */
+}
+
+.customButton-dark {
+  background-color: #65a30d;
+  color: #fff;
+  transition: background-color 0.3s; /* Add a smooth transition for the color change */
+}
+
+.customButton-dark:hover {
+  background-color: #bef264; /* Change this to the desired hover background color */
+}

@@ -83,6 +83,13 @@ function Home() {
           {filteredGroups?.length > 0 ? (
             // gropus+chat
             <div>
+              <div>
+                <Chat
+                  username={userName}
+                  room={selectedGroup}
+                  oldMessages={messages}
+                />
+              </div>
               <div className="flex flex-col 2xl:flex-row gap-8 ">
                 {filteredGroups.map((group, key) => {
                   return (
@@ -99,13 +106,6 @@ function Home() {
                     />
                   );
                 })}
-              </div>
-              <div>
-                <Chat
-                  username={userName}
-                  room={selectedGroup}
-                  oldMessages={messages}
-                />
               </div>
             </div>
           ) : (

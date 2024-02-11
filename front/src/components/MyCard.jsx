@@ -45,7 +45,7 @@ function MyCard({
           <span>🏫</span> <span>{groupItem.school.name.toUpperCase()}</span>
         </CustomLine>
         {userId === groupItem?.founder?._id ? (
-          <CustomLine>⚜️ YOU ARE THE FOUNDER </CustomLine>
+          <CustomLine>⚜️ YOU </CustomLine>
         ) : (
           <CustomLine>
             <span>⚜️ {groupItem?.founder?.userName.toUpperCase()}</span>

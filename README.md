@@ -22,21 +22,26 @@ Ispirato da quest'ultimi anni si studio intenso e dagli obiettivi onu a cui a su
 The main request of the exercise was to develop system authentication and user registration and it was also necessary to provide some functionality as desired.
 Inspired by these last years of intense study and by the UN objectives which in turn inspire s2i and by the people I met in this adventure, I wanted to do something that stimulated group study since I personally and I have seen many others afterwards of me, especially at the beginning of a course, they find themselves very inclined towards group study, they launch some requests on the discord but it is not always easy to coordinate the timing but in my opinion it is a need for a service that could fill this small gap, support in ' meeting and creating small study groups. further details will follow
 
-## :triangular_ruler: Architecture
+## :triangular_ruler: General Architecture
 
 ![Alt text](/pictures/finalProjextDoc.png "General Architecture")
+
+Details :
+
+
+
 
 ## :bulb: How it Works
 
 :it:
-La app avra' una Cover che e' la "Home page" quando non si e' loggati.
-Le altre voci del menu per i non loggati saranno "Sign Up" , "Login" ed "About" che e' l'unica pagina tra queste insieme a "Page Not Found" per i path non gestiti che saranno uguali per gli utenti autenfificati e no.
-Il menu per gli utenti autentificati invece sara' "Home"(dove si gestiranno i gruppi studio a cui si e' iscritti), "Groups" dove si potra creare un nuovo gruppo ed iscriversi ad altri oltre che navigare fra i gruppi.Ci sara' la pagina "About" che come gia' detto sara' l'unica se no nconsideriamo "Page not found" accessibile allo stesso modo da utenti autentificati o no.Ci sara' ovviamente la pagina per il "Logout" ed infine solo per utenti "admin" un pannello per creare nuove scuole , master e corsi a cui i gruppi faranno riferimento.
 
 :en:
-The app will have a Cover which is the "Home page" when you are not logged in.
-The other menu items for non-logged in users will be "Sign Up", "Login" and "About" which is the only page among these together with "Page Not Found" for unmanaged paths which will be the same for authenticated users and no.
-The menu for authenticated users will instead be "Home" (where you will manage the study groups you have signed up to), "Groups" where you can create a new group and subscribe to others as well as navigate between the groups. There will be ' the "About" page which, as already mentioned, will be the only one if we do not consider "Page not found" accessible in the same way by authenticated or non-authenticated users. There will obviously be the "Logout" page and finally only for users "admin" a panel to create new schools, masters and courses to which the groups will refer.
+
+## :blue-book: DataBase MONGO DB MONGOOSE
+
+:it:
+
+:en:
 
 ## :art:Styles
 

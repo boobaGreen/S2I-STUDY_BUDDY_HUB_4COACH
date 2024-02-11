@@ -44,26 +44,46 @@ function ViewGroups() {
   return (
     <>
       {filteredGroups && filteredGroups.length > 2 ? (
-        <div className=" overflow-hidden ">
-          <CustomTitle>{renderGroupList()}</CustomTitle>
-          <div className="slider-container">
-            <OutletSlider>
-              <CustomSlider>
-                {filteredGroups?.map((groupItem, key) => (
-                  <div className="" key={key}>
-                    {/* //mx4 nel div sopra*/}
-                    <Card
-                      groupItem={groupItem}
-                      userId={userId}
-                      onSubmitHandler={onSubmitHandler}
-                      isLoading={isLoading}
-                    ></Card>
-                  </div>
-                ))}
-              </CustomSlider>
-            </OutletSlider>
+        <>
+          {/* // qui sotto versione per schermi molto piccoli ! */}
+          <div className="block md:hidden overflow-hidden  ">
+            <div className="w-full flex justify-center items-center gap-8 flex-col md:flex-row ">
+              {filteredGroups?.map((groupItem, key) => (
+                <div className="" key={key}>
+                  {/* //mx4 nel div sopra*/}
+                  <Card
+                    groupItem={groupItem}
+                    userId={userId}
+                    onSubmitHandler={onSubmitHandler}
+                    isLoading={isLoading}
+                  ></Card>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+
+          {/* // qui sotto versioneper schermi da sm in su ! */}
+          <div className="hidden md:block overflow-hidden ">
+            <CustomTitle>{renderGroupList()}</CustomTitle>
+            <div className="slider-container">
+              <OutletSlider>
+                <CustomSlider>
+                  {filteredGroups?.map((groupItem, key) => (
+                    <div className="" key={key}>
+                      {/* //mx4 nel div sopra*/}
+                      <Card
+                        groupItem={groupItem}
+                        userId={userId}
+                        onSubmitHandler={onSubmitHandler}
+                        isLoading={isLoading}
+                      ></Card>
+                    </div>
+                  ))}
+                </CustomSlider>
+              </OutletSlider>
+            </div>
+          </div>
+        </>
       ) : (
         <div className="w-full flex justify-center items-center gap-8 flex-col md:flex-row ">
           {filteredGroups?.map((groupItem, key) => (

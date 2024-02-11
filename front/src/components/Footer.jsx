@@ -6,23 +6,23 @@ import {
   FiYoutube,
 } from "react-icons/fi";
 const socialLinks = [
+  // {
+  //   id: 1,
+  //   icon: <FiGlobe />,
+  //   url: "https://www.stoman.me/",
+  // },
   {
     id: 1,
-    icon: <FiGlobe />,
-    url: "https://www.stoman.me/",
-  },
-  {
-    id: 2,
     icon: <FiGithub />,
     url: "https://github.com/",
   },
   {
-    id: 3,
+    id: 2,
     icon: <FiTwitter />,
     url: "https://twitter.com/",
   },
   {
-    id: 4,
+    id: 3,
     icon: <FiLinkedin />,
     url: "https://www.linkedin.com/in/",
   },
@@ -52,7 +52,7 @@ function Footer() {
           </ul>
         </div>
         <div className="w-auto flex  justify-center ">
-          <p className="text-xl sm:text-2xl mt-4">
+          <p className="text-sm sm:text-base md:text-xl s mt-4">
             © {currentYear} Copyright Dall'Ara Claudio
           </p>
         </div>

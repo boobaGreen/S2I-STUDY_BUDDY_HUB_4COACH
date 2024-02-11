@@ -44,7 +44,7 @@ function Chat({ username, room, oldMessages }) {
   }, [socket]);
 
   return (
-    <div className="h-[75vh] flex flex-col justify-between">
+    <div className="h-[75vh] mb-2 flex flex-col justify-between">
       <ScrollToBottom className="overflow-y-auto">
         {messageList?.map((messageContent, key) => {
           const isCurrentUser = messageContent.user === username;
@@ -72,7 +72,7 @@ function Chat({ username, room, oldMessages }) {
           );
         })}
       </ScrollToBottom>
-      <div className="mx-4 mt-4">
+      <div className="mb-6">
         <CustomInputBox>
           <CustomInput
             type="text"

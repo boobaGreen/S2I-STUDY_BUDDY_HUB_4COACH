@@ -12,9 +12,11 @@ function Card({ groupItem, userId, onSubmitHandler, isLoading }) {
     groupItem && (
       <div className=" w-[12rem] sm:w-[15rem] h-[33rem] text-sm sm:text-base  lg:text-lg xl:text-xl p-4 rounded-3xl bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)] text-[var(--color-text)] dark:text-[var(--color-text-dark)]">
         <div className=" flex justify-center ">
-          <CustomLineBig>
-            <span>{groupItem.name}</span>
-          </CustomLineBig>
+          <div className="mb-8">
+            <CustomLineBig>
+              <span>{groupItem.name}</span>
+            </CustomLineBig>
+          </div>
         </div>
         <div className="">
           <CustomLine>

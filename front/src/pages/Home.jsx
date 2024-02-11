@@ -5,7 +5,6 @@ import CustomTitle from "../elements/CustomTitle";
 import { useGetGroups } from "../hooks/useGetGroups";
 import { useEffect, useState } from "react";
 import MyCard from "../components/MyCard";
-import { useNavigate } from "react-router-dom";
 import axiosClient from "../serviceApi/http-common";
 import {
   useLeaveGroupMutation,
@@ -65,29 +64,41 @@ function Home() {
     };
 
     fetchMessages();
-  }, [selectedGroup, jwtToken]);
+  }, [selectedGroup, jwtToken, socket]);
 
   const handleChatButton = (group) => {
     setSelectedName(group.name);
     setSelectedGroup(group._id);
   };
-  const navigate = useNavigate();
-  const goToGroups = () => navigate("/groups");
+
   console.log("socket", socket);
   return (
     <OutletMainLayout>
       <OutletPrimaryTab>
         <CustomTitle>My Groups</CustomTitle>
         {/* (groups+chat or message) */}
-        <div className="mt-12 div che contiene o messaggio o grup+chat">
+        <div className="mt-12 flex flex-col justify-center items-center">
           {filteredGroups?.length > 0 ? (
-            // gropus+chat
+            // groips+chat
             <div>
-              <div className="flex flex-col justify-center items-centerw-[90%] my-6 py-4 border-solid border-red-500 border-4">
-                <CustomTitle>Chat for {selectedGroup}</CustomTitle>
+              <div className="flex flex-col justify-center items-center w-full mt-6 mb-8 py-4 border-solid  border-4">
+                {selectedName ? (
+                  <div className="flex flex-col justify-center items-center">
+                    <CustomTitle>Chat for {selectedName}</CustomTitle>
+                    <CustomTitle>{selectedName}</CustomTitle>
+                    <CustomTitle>Group</CustomTitle>
+                  </div>
+                ) : (
+                  <div className="flex flex-col justify-center items-center">
+                    <CustomTitle>Choose</CustomTitle>
+                    <CustomTitle>a group</CustomTitle>
+                    <CustomTitle>chat button</CustomTitle>
+                    <CustomTitle>to start chat</CustomTitle>
+                  </div>
+                )}
                 <Chat
                   username={userName}
-                  room={selectedGroup}
+                  room={selectedName}
                   oldMessages={messages}
                 />
               </div>

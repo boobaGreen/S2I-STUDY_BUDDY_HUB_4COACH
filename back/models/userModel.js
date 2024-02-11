@@ -18,10 +18,6 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email'],
   },
-  // photo: {
-  //   type: String,
-  //   select: false,
-  // },
   role: {
     type: String,
     enum: ['user', 'mod', 'admin', 'tutor'],
@@ -62,7 +58,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     select: false,
   },
-  // da aggiungere anche su userGoogle!!!!!!!!!!!!!!
   status: {
     type: String,
     enum: ['Pending', 'Active', 'Ban'],

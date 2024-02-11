@@ -36,74 +36,8 @@ const groupSchema = new mongoose.Schema({
 
       dateStart: { type: Date, default: Date.now() },
       dateEnd: { type: Date, default: null },
-
-      // malus: [
-      //   {
-      //     value: { type: Number, required: true },
-      //     date: { type: Date, required: true, default: Date.now() },
-      //   },
-      // ],
-      // bonus: [
-      //   {
-      //     value: { type: Number, required: true },
-      //     date: { type: Date, required: true, default: Date.now() },
-      //   },
-      // ],
-      // badges: [
-      //   {
-      //     name: { type: String, required: true },
-      //     date: { type: Date, required: true, default: Date.now() },
-      //   },
-      // ],
-      // result: {
-      //   type: String,
-      //   enum: [
-      //     'attivo',
-      //     'promosso',
-      //     'bocciato e rinunciato',
-      //     'bocciato riprovo',
-      //     'altro',
-      //   ],
-      //   default: 'attivo',
-      // },
-      // resultHistory: [
-      //   {
-      //     date: { type: Date, default: Date.now() },
-      //     result: {
-      //       type: String,
-      //       enum: [
-      //         'attivo',
-      //         'promosso',
-      //         'bocciato e rinunciato',
-      //         'bocciato riprovo',
-      //         'altro',
-      //       ],
-      //       default: 'attivo',
-      //     },
-      //   },
-      // ],
     },
   ],
-  // tutors: [
-  //   {
-  //     user: {
-  //       type: mongoose.Schema.ObjectId,
-  //       refPath: 'tutors.type',
-  //     },
-  //     type: {
-  //       type: String,
-  //       enum: ['User', 'GoogleUser'],
-  //     },
-  //     fromDate: {
-  //       type: Date,
-  //       required: true,
-  //     },
-  //     toDate: {
-  //       type: Date,
-  //     },
-  //     default: [],
-  //   },
-  // ],
 
   maxParticipants: {
     type: Number,

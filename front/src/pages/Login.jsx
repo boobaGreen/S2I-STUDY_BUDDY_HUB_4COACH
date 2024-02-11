@@ -121,7 +121,10 @@ function Login() {
         <OutletPrimaryTab>
           <CustomTitle>Login</CustomTitle>
 
-          <form onSubmit={handleSubmit(onSubmitHandler)}>
+          <form
+            onSubmit={handleSubmit(onSubmitHandler)}
+            className="max-w-[90%]"
+          >
             {/* //EMAIL */}
             <div className="mt-4">
               <CustomLabel>Email</CustomLabel>
@@ -144,15 +147,15 @@ function Login() {
             </div>
 
             {/* //BUTTONS */}
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center gap-4">
               {/* //Forget Password */}
-              <div className="flex items-center justify-center m-6">
+              <div className="flex items-center justify-center my-6">
                 <CustomButton onClick={goToForgetPassword}>
                   Forget Password?
                 </CustomButton>
               </div>
               {/* //LOGIN*/}
-              <div className="flex items-center justify-center m-6">
+              <div className="flex items-center justify-center">
                 <CustomButton
                   type="submit"
                   onClick={handleSubmit(onSubmitHandler)}

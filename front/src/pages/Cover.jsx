@@ -25,7 +25,7 @@ function Cover() {
     <OutletMainLayout>
       <div className=" w-[90%] md:w-[50%] flex justify-center self-center mt-24 ">
         <OutletPrimaryTab>
-          <div className="flex gap-8 w-full justify-center">
+          <div className="flex gap-2 w-full justify-center">
             <div className="flex items-center">
               <CustomButton onClick={goToSignup}>
                 <p>Sign Up</p>

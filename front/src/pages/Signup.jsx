@@ -112,7 +112,10 @@ function Signup() {
       <div className=" w-[90%] md:w-[50%] flex justify-center self-center mt-12 mb-24 ">
         <OutletPrimaryTab>
           <CustomTitle>SignUp</CustomTitle>
-          <form onSubmit={handleSubmit(onSubmitHandler)}>
+          <form
+            className="max-w-[90%]"
+            onSubmit={handleSubmit(onSubmitHandler)}
+          >
             <div>
               <CustomLabel>Name</CustomLabel>
               <CustomInputBox>
@@ -153,7 +156,7 @@ function Signup() {
                 <div>{errors.passwordConfirm?.message}</div>
               </CustomInputBox>
             </div>
-            <div className="flex items-center justify-center m-6 gap-6">
+            <div className="flex items-center justify-center m-6 gap-2">
               <CustomButton
                 type="submit"
                 onClick={handleSubmit(onSubmitHandler)}

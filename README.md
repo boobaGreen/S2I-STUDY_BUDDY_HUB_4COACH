@@ -2,7 +2,7 @@
 
 :it:
 
-Questa è la documentazione GENRALE del progetto , nelle sottocartelle front e back si troveranno le documentazioni dettagliate per il back end ed il front end.
+Questa è la documentazione GENERALE del progetto , nelle sottocartelle front e back si troveranno le documentazioni dettagliate per il back end ed il front end.
 
 :uk:
 

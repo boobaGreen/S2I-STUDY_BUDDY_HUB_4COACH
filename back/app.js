@@ -1,10 +1,10 @@
+//app.js
 const dotenv = require('dotenv');
 const cors = require('cors');
-//app.js
 const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser'); // Aggiunto il middleware cookie-parser x jwt
-// const rateLimit = require('express-rate-limit');
+const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
@@ -49,14 +49,14 @@ app.use(helmet());
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
-// Limit request
-// const limiter = rateLimit({
-//   max: 200000, //da rimetter piu' basso
-//   windowMs: 60 * 60 * 1000,
-//   message: 'Too many request from this IP, please try again in an hour',
-// }); // 429 Error
 
-// app.use('/api', limiter);
+const limiter = rateLimit({
+  max: 5000, //max request per hour
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many request from this IP, please try again in an hour',
+}); // 429 Error
+
+app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' })); // Middleware add the data from the body to the request object
@@ -69,18 +69,6 @@ app.use(xss());
 
 // Prevent parameter pollution
 
-app.use(
-  hpp({
-    whitelist: [
-      // 'duration',
-      // 'ratingsQuantity',
-      // 'ratingsAverage',
-      // 'maxGroupSize',
-      // 'difficulty',
-      // 'price',
-    ],
-  }),
-);
 app.use(compression());
 // Serving static files
 app.use(express.static(`${__dirname}/public`));
@@ -92,9 +80,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// NOTE 2) ROUTES
+//2) ROUTES
 
-// app.use('/api/v1/tours', tourRouter);
 app.use('/test', testRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/schools', schoolRouter);
@@ -111,4 +98,4 @@ app.all('*', (req, res, next) => {
 //Global Error Handling Middleware - 4 argument express recognize is a error middleware
 app.use(globalErrorHandler);
 
-module.exports = { app }; // Esporta l'oggetto app
+module.exports = { app }; //

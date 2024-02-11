@@ -22,20 +22,33 @@ This is the BACK documentation of the project, in the main folder the GENERAL do
 
 :it:
 Per semplicita' ho aggiunto un file `config.fake` dovrebbe servire per semplificare la stesura del file stesso in locale o nel modo in qui si settono le variabile d'ambiente nel sistema di deploy scelto. Nel mio caso su render si puo' caricare un file intero con copia incolla del suo contenuto (prima tolgo le righe commentate ) ed in un sol ocopia incolla si riescono a craicare tutte le variabili d'ambiente altrimenti si posono aricare una alla volta.
+:uk:
+For simplicity I added a `config.fake` file which should serve to simplify the drafting of the file itself locally or in the way in which the environment variables are set in the chosen deployment system. In my case on render you can load an entire file with copy and paste of its contents (first I remove the commented lines) and in a single copy and paste you can create all the environment variables otherwise they can be loaded one at a time.
 
 ![Screen Render Env](/back/pictures/renderEnv.png 'Screen Render Env')
 
+:it:
 Per il settings del progetto Render.com ci chiedera' di scegliere una repo da Github, nel nostro progetto indicheremo la cartella back perche' il link della repo punta all'intero progetto invece noi vogliamo scendere nella cartella `\back`.
 Inoltre attenzione ad inserire come build command "yarn" e come start command `node server.js`nel mio caso o il file principale del back in generale.
 Scegliamo yarn anche se in locale usaimo npm perhc'e render funziona meglio cosi per node js.
+:uk:
+For the project settings Render.com will ask us to choose a repo from Github, in our project we will indicate the back folder because the repo link points to the entire project instead we want to go to the `\back` folder.
+Also be careful to insert "yarn" as the build command and `node server.js` as the start command in my case or the main back file in general.
+We choose yarn even if we use npm locally because render works better this way for node js.
 
 ![Setting Render 1](/back/pictures/render1Setting.png 'Setting Render 1')
 ![Setting Render 2](/back/pictures/render2Setting.png 'Setting Render 2')
 
+:it:
 La variabile NODE_ENV e' impostata su develpment nll'esempio questo vuol dire che puntera' al frontend locale impostato su localhost:4000 .
 Se si vuole puntare al front end di produzione in questo progetto https://studybuddyhub.netlify.app allora commentare la riga # NODE_ENV=development e toglier il commento # alla riga NODE_ENV=production.
 Per lavorare su server locale far partire il programma da locale ricordarsi di coordinare il frontend in tal caso .
 ALtra differenza in cui incide la variabile NODE_ENV e' che se in production usa il servizio di BREVO e manda mail reali se invece in development utilizza il servizio fittizio di MAILTRAP.
+:uk:
+The NODE_ENV variable is set to developpment in the example, this means that it will point to the local frontend set to localhost:4000.
+If you want to point to the production front end in this project https://studybuddyhub.netlify.app then comment out the line # NODE_ENV=development and uncomment # the line NODE_ENV=production.
+To work on a local server, start the program locally, remember to coordinate the frontend in this case.
+Another difference affected by the NODE_ENV variable is that if in production it uses the BREVO service and sends real emails while in development it uses the fictitious MAILTRAP service.
 
 ```
 {
@@ -81,4 +94,10 @@ ALtra differenza in cui incide la variabile NODE_ENV e' che se in production usa
 }
 ```
 
+## :rocket: Chat
+
+:it:
+Ho voluto provare anche a gestire una chat. Ho scoperto l'utilizzo dei socket ed ho inziato a sperimentare un po' ... il file principale che gestisce la chat e' socketManager.js
+
 :uk:
+I also wanted to try managing a chat. I discovered the use of sockets and started experimenting a bit... the main file that manages the chat is socketManager.js

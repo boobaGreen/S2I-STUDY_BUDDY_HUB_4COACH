@@ -1,10 +1,4 @@
-import {
-  FiGithub,
-  FiTwitter,
-  FiLinkedin,
-  FiGlobe,
-  FiYoutube,
-} from "react-icons/fi";
+import { FiGithub, FiTwitter, FiLinkedin } from "react-icons/fi";
 const socialLinks = [
   // {
   //   id: 1,
@@ -19,7 +13,7 @@ const socialLinks = [
   {
     id: 2,
     icon: <FiTwitter />,
-    url: "https://twitter.com/",
+    url: "https://twitter.com/claudiodal8444",
   },
   {
     id: 3,

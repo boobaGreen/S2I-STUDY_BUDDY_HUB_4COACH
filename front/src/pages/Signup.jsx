@@ -64,10 +64,12 @@ function Signup() {
   };
   const handleGoogleLogin = async () => {
     if (import.meta.env.MODE === "production") {
+      console.log("import.meta.env.mode", import.meta.env.MODE);
       setMessage({
         type: "info",
         text: "This feature is only available in local/development mode.",
       });
+      console.log(message, "message");
       return;
     }
 

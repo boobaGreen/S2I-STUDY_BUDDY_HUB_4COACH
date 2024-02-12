@@ -8,7 +8,7 @@ function About() {
     <OutletMainLayout>
       <OutletPrimaryTab>
         <CustomTitle>About</CustomTitle>
-        <MessageAbout message="Questa app nasce come progetto finale per Master di Full stack developer di Start2Impact University  "></MessageAbout>
+        <MessageAbout message="Questa app nasce come progetto finale per il Master di Full stack developer di Start2Impact University  "></MessageAbout>
       </OutletPrimaryTab>
     </OutletMainLayout>
   );

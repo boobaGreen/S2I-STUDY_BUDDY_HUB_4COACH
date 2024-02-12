@@ -1,0 +1,8 @@
+
+
+-aggiungere dati reali database 2 scuole , 2 master x scuola , 2-3 corsi x master   
+-documentazione postman(API)
+-commenti codice
+-essendo gratuito render riprovare dopo 1 minuto
+-ringraziamenti
+

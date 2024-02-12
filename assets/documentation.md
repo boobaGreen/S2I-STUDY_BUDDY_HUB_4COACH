@@ -336,11 +336,6 @@ To read fields dependent on other entities, remember to use "populate" as in thi
 
 ```
 
-## :search: API 
-
-:it:
-La 
-
 ## :bulb: IDEAS
 
 :it:
@@ -393,6 +388,351 @@ If you don't have it, you can download it here:
 [Node.js](https://nodejs.org/it/download/)  
 After the installation, you're ready to go.
 you will find instructions for local installation or deployment both in the \front and \back folders in the readme.md relating to the front-end and back-end in detail.
+
+# :mortar_board: SBH - Study Buddy Hub - BACK END
+
+:it:
+
+Questa è la documentazione BACK END del progetto , nella root la documentazione generale e nella cartella front la documentazione FRONT END
+
+:uk:
+
+This is the BACK documentation of the project, in the main folder the GENERAL doc and in front folder the FRONT END doc.
+
+## :hammer: Tools
+
+![Javascript](https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&labelColor=black&logo=javascript&logoColor=F0DB4F)
+![Nodejs](https://img.shields.io/badge/Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![Markdown](https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white)
+![VSCode](https://img.shields.io/badge/Visual_Studio-0078d7?style=for-the-badge&logo=visual%20studio&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
+
+## :dart: Settings for env file e Render.com
+
+:it:
+Per semplicita' ho aggiunto un file `config.fake` dovrebbe servire per semplificare la stesura del file stesso in locale o nel modo in qui si settono le variabile d'ambiente nel sistema di deploy scelto. Nel mio caso su render si puo' caricare un file intero con copia incolla del suo contenuto (prima tolgo le righe commentate ) ed in un sol ocopia incolla si riescono a craicare tutte le variabili d'ambiente altrimenti si posono aricare una alla volta.
+:uk:
+For simplicity I added a `config.fake` file which should serve to simplify the drafting of the file itself locally or in the way in which the environment variables are set in the chosen deployment system. In my case on render you can load an entire file with copy and paste of its contents (first I remove the commented lines) and in a single copy and paste you can create all the environment variables otherwise they can be loaded one at a time.
+
+![Screen Render Env](/assets/pictures/renderEnv.png "Screen Render Env")
+
+:it:
+Per il settings del progetto Render.com ci chiedera' di scegliere una repo da Github, nel nostro progetto indicheremo la cartella back perche' il link della repo punta all'intero progetto invece noi vogliamo scendere nella cartella `\back`.
+Il progetto e' da lasciare cosi come e' sara' cura di Render.com creare la build , e poi deployare e lanciare il server.
+Inoltre attenzione ad inserire come build command "yarn" e come start command `node server.js`nel mio caso o il file principale del back in generale.
+Scegliamo yarn anche se in locale usaimo npm perhc'e render funziona meglio cosi per node js.
+:uk:
+For the project settings Render.com will ask us to choose a repo from Github, in our project we will indicate the back folder because the repo link points to the entire project instead we want to go to the `\back` folder.
+Also be careful to insert "yarn" as the build command and `node server.js` as the start command in my case or the main back file in general.
+We choose yarn even if we use npm locally because render works better this way for node js.
+
+![Setting Render 1](/assets/pictures/render1Setting.png "Setting Render 1")
+![Setting Render 2](/assets/pictures/render2Setting.png "Setting Render 2")
+
+:it:
+La variabile NODE_ENV e' impostata su develpment nll'esempio questo vuol dire che puntera' al frontend locale impostato su localhost:4000 .
+Se si vuole puntare al front end di produzione in questo progetto https://studybuddyhub.netlify.app allora commentare la riga # NODE_ENV=development e toglier il commento # alla riga NODE_ENV=production.
+Per lavorare su server locale far partire il programma da locale ricordarsi di coordinare il frontend in tal caso .
+ALtra differenza in cui incide la variabile NODE_ENV e' che se in production usa il servizio di BREVO e manda mail reali se invece in development utilizza il servizio fittizio di MAILTRAP.
+:uk:
+The NODE_ENV variable is set to developpment in the example, this means that it will point to the local frontend set to localhost:4000.
+If you want to point to the production front end in this project https://studybuddyhub.netlify.app then comment out the line # NODE_ENV=development and uncomment # the line NODE_ENV=production.
+To work on a local server, start the program locally, remember to coordinate the frontend in this case.
+Another difference affected by the NODE_ENV variable is that if in production it uses the BREVO service and sends real emails while in development it uses the fictitious MAILTRAP service.
+
+```
+{
+        # NODE_ENV=production
+    NODE_ENV=development
+
+    # PORT SETTING
+    PORT=3005
+
+    # NODE VERSION IMPORTANT FOR SETTING
+    # RENDER ON COM DEVELOP
+    NODE_VERSION=18.17.1
+
+    # GENERAL FRONT SIDE ADDRESS
+    FRONT_SITE_WEB=https://studybuddyhub.netlify.app
+    FRONT_SITE_LOCAL=http://localhost:4000
+
+    # VARIABLE AFFECTED ONLY FOR GOOGLE AUTH
+    # WHICH IS CURRENTLY LOCALLY ONLY IN DEV MODE
+    BACK_SITE_WEB=http://localhost:3005
+    CLIENT_ID=866088888888-k7s0obpjca3rj75mjnaah0dk704rrrw3.apps.googleusercontent.com
+    CLIENT_SECRET=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
+
+    # MONGODB SETTINGS
+    USER_NAME=claudiodallara77
+    DATABASE_PASSWORD=sD1K22PwkBertyKs
+    DATABASE=mongodb+srv://claudiodallara77:<password>@cluster0.2efcc4w.mongodb.net/S2iStudyBuddyHub?retryWrites=true&w=majority
+
+    # BREVO SETTINGS
+    API_KEY_BREVO=xkeysib-6d64537333e73730129b8rtdgf785458758cf756621984cd2bf7777777bdb666-yTvfhlT2vyjSa3KX
+
+    # JWT SETTINGS
+    JWT_SECRET=fullstack-project-secret.007-dallaRussiaConFurore-Cesena
+    JWT_EXPIRES_IN=90d
+    JWT_COOKIE_EXPIRES_IN=90
+
+    # MAIL TRAP SETTINGS
+    EMAIL_USERNAME=9e77fd5c0a564e
+    EMAIL_PASSWORD=80127255r6b921
+    EMAIL_HOST=sandbox.smtp.mailtrap.io
+    EMAIL_PORT=25
+
+}
+```
+
+## :rocket: Chat
+
+:it:
+Ho voluto provare anche a gestire una chat. Ho scoperto l'utilizzo dei socket ed ho inziato a sperimentare un po' ... il file principale che gestisce la chat e' socketManager.js
+
+:uk:
+I also wanted to try managing a chat. I discovered the use of sockets and started experimenting a bit... the main file that manages the chat is socketManager.js
+
+## :floppy_disk: Installation
+
+:it:
+Prima di tutto, è necessario che Node.js sia installato.
+Se non ce l'hai puoi scaricarlo qui:
+[Node.js](https://nodejs.org/it/download/)
+Dopo l'installazione, sei pronto per partire.
+
+:uk:
+First of all, you need Node.js installed.  
+If you don't have it, you can download it here:
+[Node.js](https://nodejs.org/it/download/)  
+After the installation, you're ready to go.
+
+### 1 - Clone the repository
+
+`git clone https://github.com/boobaGreen/S2I-STUDY_BUDDY_HUB_4COACH`
+
+IMPORTANT!! - NOW go to the FOLDER "back" :
+`cd back`
+
+### 2 - Install the dependencies
+
+REMEBER: we are in the "back" folder now!
+
+`npm install`
+
+### 3 - Setting the config.env file
+
+:it:
+Sopra abbiamo già elencato tutte le variabili d'ambiente da impostare.
+Ricordo di lasciare decommentata la modalità desiderata se sviluppo punterà al front end locale e utilizzerà "mailtrap" di default, se produzione allora punterà al front end indicato come web e utilizzerà "brevo" per inviare email vere e proprie
+
+:uk:
+Above we have already listed all the environment variables to be set.
+I remember to leave the desired mode uncommented if development will point to the local front end and will use "mailtrap" by default, if production then it will point to the front end indicated as web and will use "brevo" to send real emails
+
+```
+{
+    # NODE_ENV=production
+     NODE_ENV=development`
+}
+```
+
+### 4 - Start it
+
+add this scripts at your "package.json" file :
+
+```
+"scripts": {
+    "start": "SET NODE_ENV=development&&nodemon server.js",
+    "start:prod": "SET NODE_ENV=production&&nodemon server.js",
+  },
+```
+
+`npm start` - start in DEV mode default (error's message are set for developers)
+`npm start:prod ` - start in PROD mode (error's messages are set for clients)
+
+# :mortar_board: SBH - Study Buddy Hub - Front End
+
+:it:
+
+Questa è la documentazione di FronEnd React per un progetto MERN più ampio.
+
+:uk:
+
+This is the FronEnd React Documentation for a larger MERN project.
+
+## :question: Why
+
+This project is the final MERN project for start2impact full stack developer master course.
+
+## :punch: General
+
+:it:
+La richiesta principale dell'esercizio era sviluppare l'autentificazione al sistema e la registrazione utente inoltre bisognava dare qualche funzionalita a piacere .
+Ispirato da quest'ultimi anni si studio intenso e dagli obiettivi onu a cui a sua volta si inspira s2i e dalle persone conosciute in questa avventura ho voluto fare qualcosa che stimolasse lo studio di gruppo visto che io in prima persona e ho visto tanti altri dopo di me soprattuto all'inizio di un corso si trovano molto propensi allo studio di gruppo , lanciano qualche richiesta sul discord ma non sempre e' facile coordinare le tempistiche ma secondo me e' un esigenza servizio che potrebbe riempire questa piccola lacuna , supportare nell'incontro e nella creazione di piccoli gruppi studio. seguiranno ulteriori dettagli
+
+:gb:
+The main request of the exercise was to develop system authentication and user registration and it was also necessary to provide some functionality as desired.
+Inspired by these last years of intense study and by the UN objectives which in turn inspire s2i and by the people I met in this adventure, I wanted to do something that stimulated group study since I personally and I have seen many others afterwards of me, especially at the beginning of a course, they find themselves very inclined towards group study, they launch some requests on the discord but it is not always easy to coordinate the timing but in my opinion it is a need for a service that could fill this small gap, support in ' meeting and creating small study groups. further details will follow
+
+## :bulb: How it Works
+
+:it:
+La app avra' una Cover che e' la "Home page" quando non si e' loggati.
+Le altre voci del menu per i non loggati saranno "Sign Up" , "Login" ed "About" che e' l'unica pagina tra queste insieme a "Page Not Found" per i path non gestiti che saranno uguali per gli utenti autenfificati e no.
+Il menu per gli utenti autentificati invece sara' "Home"(dove si gestiranno i gruppi studio a cui si e' iscritti), "Groups" dove si potra creare un nuovo gruppo ed iscriversi ad altri oltre che navigare fra i gruppi.Ci sara' la pagina "About" che come gia' detto sara' l'unica se no nconsideriamo "Page not found" accessibile allo stesso modo da utenti autentificati o no.Ci sara' ovviamente la pagina per il "Logout" ed infine solo per utenti "admin" un pannello per creare nuove scuole , master e corsi a cui i gruppi faranno riferimento.
+
+:en:
+The app will have a Cover which is the "Home page" when you are not logged in.
+The other menu items for non-logged in users will be "Sign Up", "Login" and "About" which is the only page among these together with "Page Not Found" for unmanaged paths which will be the same for authenticated users and no.
+The menu for authenticated users will instead be "Home" (where you will manage the study groups you have signed up to), "Groups" where you can create a new group and subscribe to others as well as navigate between the groups. There will be ' the "About" page which, as already mentioned, will be the only one if we do not consider "Page not found" accessible in the same way by authenticated or non-authenticated users. There will obviously be the "Logout" page and finally only for users "admin" a panel to create new schools, masters and courses to which the groups will refer.
+
+### :: ScreenSchot
+
+:it:
+la app oltre alla gestionde dell'autentificazione che reputo molto approfondita ma in realta' che non richiede un manuale utente particolare, i lresto dell'app e' appena accennata, idee per renderla piu completa e complessa nel readme del progetto principale nella root folder.
+
+Nonostante questo metto qualche screenshots di esempio.
+:uk:
+the app in addition to the authentication management which I consider very in-depth but in reality does not require a particular user manual, the rest of the app is just mentioned, ideas to make it more complete and complex in the readme of the main project in the root folder.
+
+Despite this I post some example screenshots:
+
+![Setting Render 2](/assets/pictures/render2Setting.png "Setting Render 2")
+![cover](/assets/pictures/cover.png "cover")
+![about](/assets/pictures/about.png "about")
+![signup](/assets/pictures/signup.png "signup")
+![login](/assets/pictures/login.png "login")
+![cardmygroup](/assets/pictures/cardmygroup.png "cardmygroup")
+![chat](/assets/pictures/chat.png "chat")
+![groups](/assets/pictures/groups.png "groups")
+![logout](/assets/pictures/groups.png "logout")
+
+## :art:Styles
+
+:it:
+Per Gestire lo stile ho usato Tailwind.
+Lo stile e' volutamente molto semplice ma ho voluto cercare di rendere il codice leggibile senza astrarre troppo . Ho quindi creato Elementi riutilizzabili alcuni anche personalizzabili , ed ho usato comunque una serie di variabili colore di base personalizzati per rendere piu veloce possibile eventual cambiamenti futuri , la tabella si trova nel file `index.css` nella root.
+Le mediaquery sono molto semplici ed anche il menu' principale diventa a scomparsa in caso di schermo piccoli.
+
+:en:
+To manage the style I used Tailwind.
+The style is deliberately very simple but I wanted to try to make the code readable without abstracting too much. I therefore created reusable elements, some of which were also customizable, and I still used a series of customized basic color variables to make any future changes as fast as possible, the table is found in the index.css file in the root.
+The media queries are very simple and even the main menu disappears on small screens.
+
+## :books: Dependencies
+
+:it:
+spiegazione delle librerie usate per scopo:
+:uk:
+explanation of libraries used for purpose:
+
+### general react
+
+"react": "^18.2.0"
+"react-dom": "^18.2.0"
+"react-router-dom": "^6.18.0"
+
+## fetching
+
+For react query and axios settings
+"@tanstack/react-query": "^5.17.19",
+"@tanstack/react-query-devtools": "^5.17.21"
+"axios": "^1.6.1"
+
+### Jwt Token and http only cookies
+
+"js-cookie": "^3.0.5",
+"jsonwebtoken": "^9.0.2"
+
+### form
+
+"react-hook-form": "^7.48.2",
+"@hookform/resolvers": "^3.3.2",
+"yup": "^1.3.2"
+
+### toggle dark mode
+
+"react-dark-mode-toggle": "^0.2.0"
+
+### icons
+
+"react-icons": "^4.11.0"
+
+### spinners
+
+"react-loader-spinner": "^6.1.6"
+"react-spinners": "^0.13.8",
+
+### carousel
+
+"react-slick": "^0.30.1",
+"slick-carousel": "^1.8.1",
+
+### chat
+
+"socket.io-client": "^4.7.2",
+"react-scroll-to-bottom": "^4.2.0",
+
+## :paw_prints: Settings confign.env
+
+:it:
+Di file config.env ne ho pensati 2 , sono da creare quindi 2 file :
+il primo si chiamra' `.env.development` ed avra' nel mio caso con il server in locale che gira su localhost:3005 :
+
+:uk:
+I thought of 2 config.env files, so 2 files need to be created:
+the first will be called `.env.development` and in my case will have the local server running on localhost:3005
+
+```
+{VITE_APP_BASE_URL=http://localhost:3005/api/v1
+VITE_APP_BASE_URL_SOCKET=http://localhost:3005}
+```
+
+:it:
+il secondo si chiamera' `.env.production` ed avra' nel mio caso:
+
+:uk:
+the second will be called `.env.production` and will have in my case:
+
+```
+{VITE_APP_BASE_URL=https://s2i-study-buddy-hub-4coach.onrender.com/api/v1
+VITE_APP_BASE_URL_SOCKET=https://s2i-study-buddy-hub-4coach.onrender.com}
+```
+
+## :tv: Deploy on netlify
+
+Deploy for free on [netlify.com](https://app.netlify.com/)
+
+if you want to immediately test the on line app :
+[STUDYBUDDYHUB](https://studybuddyhub.netlify.app/)
+
+## :floppy_disk: Installation
+
+First of all, you need Node.js installed.  
+If you don't have it, you can download it here:
+[Node.js](https://nodejs.org/it/download/)  
+After the installation, you're ready to go.
+
+### 1 - Clone the repository
+
+`git clone https://github.com/boobaGreen/S2INodeJsPOF`
+
+IMPORTANT!! - NOW go to the FOLDER "front"" :
+`cd back`
+
+### 2 - Install the dependencies
+
+REMEBER: we are in the "front" folder now!
+
+`npm install`
+
+### 3 - Start it
+
+`npm run dev` for development mode, open the browser on http://localhost:4000/
+
+## :page_with_curl: License
 
 [MIT](https://choosealicense.com/licenses/mit/)
 

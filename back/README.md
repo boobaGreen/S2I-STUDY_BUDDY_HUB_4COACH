@@ -25,7 +25,7 @@ Per semplicita' ho aggiunto un file `config.fake` dovrebbe servire per semplific
 :uk:
 For simplicity I added a `config.fake` file which should serve to simplify the drafting of the file itself locally or in the way in which the environment variables are set in the chosen deployment system. In my case on render you can load an entire file with copy and paste of its contents (first I remove the commented lines) and in a single copy and paste you can create all the environment variables otherwise they can be loaded one at a time.
 
-![Screen Render Env](/back/pictures/renderEnv.png 'Screen Render Env')
+![Screen Render Env](/assets/pictures/pictures/renderEnv.png 'Screen Render Env')
 
 :it:
 Per il settings del progetto Render.com ci chiedera' di scegliere una repo da Github, nel nostro progetto indicheremo la cartella back perche' il link della repo punta all'intero progetto invece noi vogliamo scendere nella cartella `\back`.
@@ -37,8 +37,8 @@ For the project settings Render.com will ask us to choose a repo from Github, in
 Also be careful to insert "yarn" as the build command and `node server.js` as the start command in my case or the main back file in general.
 We choose yarn even if we use npm locally because render works better this way for node js.
 
-![Setting Render 1](/back/pictures/render1Setting.png 'Setting Render 1')
-![Setting Render 2](/back/pictures/render2Setting.png 'Setting Render 2')
+![Setting Render 1](/assets/pictures/pictures/render1Setting.png 'Setting Render 1')
+![Setting Render 2](/assets/pictures/pictures/render2Setting.png 'Setting Render 2')
 
 :it:
 La variabile NODE_ENV e' impostata su develpment nll'esempio questo vuol dire che puntera' al frontend locale impostato su localhost:4000 .
@@ -102,3 +102,68 @@ Ho voluto provare anche a gestire una chat. Ho scoperto l'utilizzo dei socket ed
 
 :uk:
 I also wanted to try managing a chat. I discovered the use of sockets and started experimenting a bit... the main file that manages the chat is socketManager.js
+
+## :floppy_disk: Installation
+
+:it:
+Prima di tutto, è necessario che Node.js sia installato.
+Se non ce l'hai puoi scaricarlo qui:
+[Node.js](https://nodejs.org/it/download/)
+Dopo l'installazione, sei pronto per partire.
+
+:uk:
+First of all, you need Node.js installed.  
+If you don't have it, you can download it here:
+[Node.js](https://nodejs.org/it/download/)  
+After the installation, you're ready to go.
+
+### 1 - Clone the repository
+
+`git clone https://github.com/boobaGreen/S2I-STUDY_BUDDY_HUB_4COACH`
+
+IMPORTANT!! - NOW go to the FOLDER "back" :
+`cd back`
+
+### 2 - Install the dependencies
+
+REMEBER: we are in the "back" folder now!
+
+`npm install`
+
+### 3 - Setting the config.env file
+
+:it:
+Sopra abbiamo già elencato tutte le variabili d'ambiente da impostare.
+Ricordo di lasciare decommentata la modalità desiderata se sviluppo punterà al front end locale e utilizzerà "mailtrap" di default, se produzione allora punterà al front end indicato come web e utilizzerà "brevo" per inviare email vere e proprie
+
+:uk:
+Above we have already listed all the environment variables to be set.
+I remember to leave the desired mode uncommented if development will point to the local front end and will use "mailtrap" by default, if production then it will point to the front end indicated as web and will use "brevo" to send real emails
+
+```
+{
+    # NODE_ENV=production
+     NODE_ENV=development`
+}
+```
+
+### 4 - Start it
+
+add this scripts at your "package.json" file :
+
+```
+"scripts": {
+    "start": "SET NODE_ENV=development&&nodemon server.js",
+    "start:prod": "SET NODE_ENV=production&&nodemon server.js",
+  },
+```
+
+`npm start` - start in DEV mode default (error's message are set for developers)
+`npm start:prod ` - start in PROD mode (error's messages are set for clients)
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+## :e-mail: Contact Me
+
+Any questions? Send me an e-mail here: claudiodallara77@gmail.com <br>
+You can find my Linkedin profile here: https://www.linkedin.com/in/claudio-dall-ara-244816175/

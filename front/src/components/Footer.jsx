@@ -8,7 +8,7 @@ const socialLinks = [
   {
     id: 1,
     icon: <FiGithub />,
-    url: "https://github.com/",
+    url: "https://github.com/boobaGreen",
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const socialLinks = [
   {
     id: 3,
     icon: <FiLinkedin />,
-    url: "https://www.linkedin.com/in/",
+    url: "https://it.linkedin.com/in/claudio-dall-ara-244816175",
   },
 ];
 

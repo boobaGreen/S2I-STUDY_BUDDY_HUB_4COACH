@@ -64,12 +64,11 @@ function Signup() {
   };
   const handleGoogleLogin = async () => {
     if (import.meta.env.MODE === "production") {
-      console.log("import.meta.env.mode", import.meta.env.MODE);
       setMessage({
-        type: "info",
+        type: "error",
         text: "This feature is only available in local/development mode.",
       });
-      console.log(message, "message");
+
       return;
     }
 
@@ -192,9 +191,12 @@ function Signup() {
               </CustomButton>
             </div>
           )}
-          {message?.type === "info" && !isLoading && (
+          {message?.type === "success" && !isLoading && (
             <div className="flex flex-col justify-center items-center">
               <SuccessMailSent message={message.text} />
+              <CustomButton className="" onClick={goToLogin}>
+                <p>Login</p>
+              </CustomButton>
             </div>
           )}
         </OutletPrimaryTab>

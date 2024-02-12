@@ -192,12 +192,9 @@ function Signup() {
               </CustomButton>
             </div>
           )}
-          {message?.type === "success" && !isLoading && (
+          {message?.type === "info" && !isLoading && (
             <div className="flex flex-col justify-center items-center">
               <SuccessMailSent message={message.text} />
-              <CustomButton className="" onClick={goToLogin}>
-                <p>Login</p>
-              </CustomButton>
             </div>
           )}
         </OutletPrimaryTab>

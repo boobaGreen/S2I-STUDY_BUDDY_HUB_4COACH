@@ -1,9 +1,10 @@
+import React, { useState, useEffect } from "react";
+import Modal from "react-modal";
 import { useMain } from "../contexts/MainContext";
 import OutletMainLayout from "../elements/OutletMainLayout";
 import OutletPrimaryTab from "../elements/OutletPrimaryTab";
 import CustomTitle from "../elements/CustomTitle";
 import { useGetGroups } from "../hooks/useGetGroups";
-import { useEffect, useState } from "react";
 import MyCard from "../components/MyCard";
 import axiosClient from "../serviceApi/http-common";
 import {
@@ -19,7 +20,18 @@ function Home() {
   const [selectedGroup, setSelectedGroup] = useState("");
   const [messages, setMessages] = useState([]);
   const [selectedName, setSelectedName] = useState("");
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 640);
 
+  const handleChatButton = (group) => {
+    setSelectedName(group.name);
+    setSelectedGroup(group._id);
+    setIsChatOpen(true);
+    window.scrollTo({
+      top: 220,
+      behavior: "smooth", // for smooth scrolling
+    });
+  };
   const filteredGroups = groups?.data?.data?.filter((group) => {
     return (
       group.participants.some(
@@ -27,6 +39,16 @@ function Home() {
       ) || group?.founder?._id === userId
     );
   });
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth <= 640);
+    };
+
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   const {
     mutate: leaveGroup,
@@ -66,11 +88,6 @@ function Home() {
     fetchMessages();
   }, [selectedGroup, jwtToken, socket]);
 
-  const handleChatButton = (group) => {
-    setSelectedName(group.name);
-    setSelectedGroup(group._id);
-  };
-
   console.log("socket", socket);
   return (
     <OutletMainLayout>
@@ -84,33 +101,46 @@ function Home() {
         {/* (groups+chat or message) */}
         <div className="mt-12 flex flex-col justify-center items-center">
           {filteredGroups?.length > 0 ? (
-            // groips+chat
+            // groups+chat
             <div className="max-w-[95%] flex flex-col justify-center items-center">
-              <div className="flex flex-col justify-center items-center  mt-6 mb-8 py-4 border-solid border-4">
-                {selectedName ? (
-                  <div className="flex flex-col justify-center items-center">
-                    <CustomTitle size={"medium"}>Chat for</CustomTitle>
-                    <CustomTitle size={"small"}>{selectedName}</CustomTitle>
-                    <CustomTitle size={"medium"}>Group</CustomTitle>
-                  </div>
-                ) : (
-                  <div className="flex flex-col justify-center items-center">
-                    <CustomTitle size={"medium"}>Choose</CustomTitle>
-                    <CustomTitle size={"medium"}>a group</CustomTitle>
-                    <CustomTitle size={"medium"}>chat button</CustomTitle>
-                    <CustomTitle size={"medium"}>💬</CustomTitle>
-                    <CustomTitle size={"medium"}>to start chat</CustomTitle>
-                    <CustomTitle size={"medium"}>⬇️</CustomTitle>
-                  </div>
-                )}
-                <div className="max-w-[95%]">
+              {isSmallScreen ? (
+                <Modal
+                  isOpen={isChatOpen}
+                  onRequestClose={() => setIsChatOpen(false)}
+                  style={{ overlay: { zIndex: 1000 } }} // Add this line
+                >
+                  <button
+                    style={{ fontSize: "20px" }}
+                    onClick={() => setIsChatOpen(false)}
+                  >
+                    Close
+                  </button>{" "}
                   <Chat
                     username={userName}
                     room={selectedName}
                     oldMessages={messages}
                   />
-                </div>
-              </div>
+                </Modal>
+              ) : (
+                selectedName && (
+                  <div className="flex flex-col">
+                    <div className="flex flex-col justify-center items-center  mt-6 mb-8 py-4 border-solid border-4">
+                      <div className="flex flex-col justify-center items-center">
+                        <CustomTitle size={"medium"}>Chat for</CustomTitle>
+                        <CustomTitle size={"small"}>{selectedName}</CustomTitle>
+                        <CustomTitle size={"medium"}>Group</CustomTitle>
+                      </div>
+                      <div className="max-w-[95%]">
+                        <Chat
+                          username={userName}
+                          room={selectedName}
+                          oldMessages={messages}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )
+              )}
               <div className="flex flex-col 2xl:flex-row gap-8 ">
                 {filteredGroups.map((group, key) => {
                   return (

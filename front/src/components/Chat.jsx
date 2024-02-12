@@ -3,7 +3,7 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import MessageSendDx from "../elements/MessageSendDx";
 import MessageReceiveSx from "../elements/MessageReceiveSx";
 import CustomInputBox from "../elements/CustomInputBox";
-import CustomInput from "../elements/CustomInput";
+import CustomInputChat from "../elements/CustomInputChat";
 import CustomButton from "../elements/CustomButton";
 import { useMain } from "../contexts/MainContext";
 
@@ -74,7 +74,7 @@ function Chat({ username, room, oldMessages }) {
       </ScrollToBottom>
       <div className="mb-6">
         <CustomInputBox>
-          <CustomInput
+          <CustomInputChat
             type="text"
             value={currentMessage}
             placeholder="Hey..."

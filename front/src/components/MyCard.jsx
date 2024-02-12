@@ -28,7 +28,7 @@ function MyCard({
     }
   };
   return (
-    <div className="p-6 flex flex-col w-[10rem] sm:w-[13rem] md:w-[23rem] text-base sm:text-lg md:text-xl justify-start items-start md:pl-12 shadow-md rounded-3xl bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)] text-[var(--color-text)] dark:text-[var(--color-text-dark)]">
+    <div className="p-6 flex flex-col w-[13rem] md:w-[20rem] text-base sm:text-lg md:text-xl justify-start items-start md:pl-12 shadow-md rounded-3xl bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)] text-[var(--color-text)] dark:text-[var(--color-text-dark)]">
       <div className="w-full">
         <CustomLineBig>
           <p className="text-center">{groupItem.name}</p>

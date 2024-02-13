@@ -11,8 +11,6 @@ function Chat({ username, room, oldMessages }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const { socket } = useMain();
-  console.log("ssssssssssssss", socket);
-
   useEffect(() => {
     setMessageList(oldMessages);
   }, [oldMessages]);

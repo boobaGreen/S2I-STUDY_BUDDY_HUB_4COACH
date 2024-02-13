@@ -1,12 +1,11 @@
 # :mortar_board: SBH - Study Buddy Hub - MERN STACK PROJECT
 
 :it:
-
-Questa è la documentazione GENERALE del progetto , nelle sottocartelle front e back si troveranno le documentazioni dettagliate per il back end ed il front end.
+Se si utilizza la app di prova on line e si riscontrano dei ritardi nella risposta al primo accesso aspettare 5 minuti e riprovare porbabilemente il server di render.com gratuito e' andato in sleep mode pochi secondi e dovrebbe partire alla prima richiesta riccevuta<br>
+Questa è la documentazione GENERALE del progetto , nelle sottocartelle front e back si troveranno le documentazioni dettagliate per il back end ed il front end. menter nella versione `/assets/documentation.pdf` e `/assets/documentation.md` abbiamo i 3 readme generale,back-end e front-end tutti insieme un osotto l'altro.<br>
 
 :uk:
-
-This is the GENERAL documentation of the project, in the front and back subfolders you will find the detailed documentation for the back end and the front end.
+If you use the online test app and experience delays in the response at the first login, wait 5 minutes and try again, probably the free render.com server went into sleep mode for a few seconds and should start at the first request received<br>
 
 ## :hammer: Tools
 
@@ -104,214 +103,6 @@ For study reasons I had also implemented access via "google auth" and locally it
 Locally it works well, and refers to localhost:4000 (in my case), however it is impossible for me to make it operational with the sites where I have deployed the back end and the front end at the moment, because Google only requires first domains level and SSL and https, which at the moment is impossible or very difficult for me for free. Even using redirection services you need to set up a Linux server for example that does the redirection.
 I'm starting to think that there are libraries to help with both the management of the JWT and for Oauth2 but in this case let's say that this is an opportunity to understand how they work basically with their callbacks between the project server and external service with link return to be configured and authorized.
 
-## :blue_book: DataBase MONGO DB MONGOOSE
-
-:it:
-Il database e' sviluppato in MongoDb con servizio cloud integrato.
-
-:uk:
-The database is developed in MongoDb with integrated cloud service.
-There are 5 main tables :
--User
--Group
--Course
--Master
--School
-
-SCHOOL SCHEMA (MONGOOSE) :
-
-```
-{
-  name: {
-  type: String,
-  required: true,
-  unique: true,
-  },
-  site: {
-  type: mongoose.SchemaTypes.Url,
-  }
-}
-
-```
-
-MASTER SCHEMA (MONGOOSE) :
-
-```
-{
-  name: {
-    type: String,
-    required: true,
-  },
-  school: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'School',
-    required: [true, 'Course must belong to a school.'],
-  }
-  }
-
-```
-
-COURSE SCHEMA (MONGOOSE) :
-
-```
-{
-   name: {
-    type: String,
-    required: true,
-  },
-  master: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Master',
-    required: [true, 'Course must belong to a master.'],
-  },
-  school: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'School',
-    required: [true, 'Course must belong to a school.'],
-  },
-  }
-
-```
-
-GROUP SCHEMA (MONGOOSE) :
-
-```
-{
-  name: {
-    type: String,
-    required: [true, 'Group must have a name'],
-    unique: true,
-    index: true, // altrimenti unique non funziona
-  },
-  course: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Course',
-    required: [true, 'Group must refer to a course'],
-  },
-  master: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Master',
-    required: [true, 'Group must refer to a master'],
-  },
-  school: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'School',
-    required: [true, 'Group must refer to a school'],
-  },
-  founder: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User',
-    required: [true, 'Group must refer to a founder'],
-  },
-  participants: [
-    {
-      user: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'User',
-      },
-
-      dateStart: { type: Date, default: Date.now() },
-      dateEnd: { type: Date, default: null },
-    },
-  ],
-
-  maxParticipants: {
-    type: Number,
-    default: 2,
-  },
-  currentParticipantsNumber: {
-    type: Number,
-    virtual: true,
-    get: function () {
-      return this.participants.length;
-    },
-  },
-  chat: [
-    {
-      user: {
-        type: String,
-        required: [true, 'Chat message must have a user'],
-      },
-      message: {
-        type: String,
-        required: [true, 'Chat message must have a message'],
-      },
-      date: {
-        type: Date,
-        default: Date.now,
-        required: [true, 'Chat message must have a date'],
-      },
-    },
-  ]
-  }
-
-```
-
-USER SCHEMA (MONGOOSE) :
-
-```
-{
- userName: {
-    type: String,
-    required: [true, 'A user must have a name'],
-    minlength: 3,
-    maxlength: 30,
-  },
-  email: {
-    type: String,
-    required: [true, 'Please provide email'],
-    unique: true,
-    lowercase: true,
-    validate: [validator.isEmail, 'Please provide a valid email'],
-  },
-  role: {
-    type: String,
-    enum: ['user', 'mod', 'admin', 'tutor'],
-    default: 'user',
-  },
-  password: {
-    type: String,
-    required: [true, 'Please provide a password'],
-    minlength: 8,
-    select: false,
-  },
-  passwordConfirm: {
-    type: String,
-    required: [true, 'Please provide a confirm password'],
-    validate: {
-      // This only works on CREATE and SAVE !!!
-      validator: function (el) {
-        return el === this.password;
-      },
-      message: 'Passwords are not the same!',
-    },
-
-    select: false,
-  },
-  passwordChangedAt: {
-    type: Date,
-    select: false,
-  },
-  passwordResetToken: {
-    type: String,
-    select: false,
-  },
-  passwordResetExpires: {
-    type: Date,
-    select: false,
-  },
-  activeToken: {
-    type: String,
-    select: false,
-  },
-  status: {
-    type: String,
-    enum: ['Pending', 'Active', 'Ban'],
-    default: 'Pending',
-  }
-}
-
-
 ```
 
 ### :triangular_flag_on_post: Note
@@ -323,23 +114,31 @@ Per leggere i campi dipendenti da altre' entita' ricordarsi di usare "populate" 
 To read fields dependent on other entities, remember to use "populate" as in this project excerpt:
 
 ```
+
 {
-    const populateOptions = [
-    { path: 'school', select: 'name' },
-    { path: 'master', select: 'name' },
-    { path: 'course', select: 'name' },
-    { path: 'participants.user', select: 'userName' }, // Aggiunta per popolare i partecipanti
-    { path: 'founder', select: 'userName' }, // Aggiunta per popolare i partecipanti
-  ];
+const populateOptions = [
+{ path: 'school', select: 'name' },
+{ path: 'master', select: 'name' },
+{ path: 'course', select: 'name' },
+{ path: 'participants.user', select: 'userName' }, // Aggiunta per popolare i partecipanti
+{ path: 'founder', select: 'userName' }, // Aggiunta per popolare i partecipanti
+];
 
 }
 
 ```
 
-## :search: API 
+## :rocket: Chat
 
 :it:
-La 
+la chat funziona di base con dei socket in ascolto sul server. la chat e' in tempo reale ma viene acnhe registrata sul database in un campo relativo ad ogni gruppo di studio <br>
+essendo una funziona sperimentale e non oggeto prncipale del progetto scolastico in essere non entro nei particolari qui nella documentazione ma rimango a dispozsizione coi contatti in calce per ulteriori info <br>
+
+:ukn:
+the chat basically works with sockets listening on the server. the chat is in real time but is also recorded on the database in a field relating to each study group<br>
+Since it is an experimental function and not the main object of the existing school project, I will not go into detail here in the documentation but I remain at your disposal with the contacts at the bottom for further information<br>
+
+
 
 ## :bulb: IDEAS
 
@@ -388,9 +187,9 @@ if you want to immediately see the site :
 
 ## :floppy_disk: Installation
 
-First of all, you need Node.js installed.  
+First of all, you need Node.js installed.
 If you don't have it, you can download it here:
-[Node.js](https://nodejs.org/it/download/)  
+[Node.js](https://nodejs.org/it/download/)
 After the installation, you're ready to go.
 you will find instructions for local installation or deployment both in the \front and \back folders in the readme.md relating to the front-end and back-end in detail.
 
@@ -400,3 +199,4 @@ you will find instructions for local installation or deployment both in the \fro
 
 Any questions? Send me an e-mail here: claudiodallara77@gmail.com <br>
 You can find my Linkedin profile here: https://www.linkedin.com/in/claudio-dall-ara-244816175/
+```

@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'development') {
   FRONT_PATH = process.env.FRONT_SITE_WEB;
 }
 console.log('FRONT_PATH', FRONT_PATH);
-console.log('back_PATH', BACK_PATH);
+console.log('BACK_PATH', BACK_PATH);
 // Oauth Google function
 async function getUserData(accessToken) {
   const response = await fetch(
@@ -468,6 +468,7 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, res);
 });
 
+// not used in StudyBuddyHub
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from collection
   const user = await User.findById(req.user.id).select('+password');

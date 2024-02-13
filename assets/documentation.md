@@ -1,12 +1,11 @@
 # :mortar_board: SBH - Study Buddy Hub - MERN STACK PROJECT
 
 :it:
-
-Questa è la documentazione GENERALE del progetto , nelle sottocartelle front e back si troveranno le documentazioni dettagliate per il back end ed il front end.
+Se si utilizza la app di prova on line e si riscontrano dei ritardi nella risposta al primo accesso aspettare 5 minuti e riprovare porbabilemente il server di render.com gratuito e' andato in sleep mode pochi secondi e dovrebbe partire alla prima richiesta riccevuta<br>
+Questa è la documentazione GENERALE del progetto , nelle sottocartelle front e back si troveranno le documentazioni dettagliate per il back end ed il front end. menter nella versione `/assets/documentation.pdf` e `/assets/documentation.md` abbiamo i 3 readme generale,back-end e front-end tutti insieme un osotto l'altro.<br>
 
 :uk:
-
-This is the GENERAL documentation of the project, in the front and back subfolders you will find the detailed documentation for the back end and the front end.
+If you use the online test app and experience delays in the response at the first login, wait 5 minutes and try again, probably the free render.com server went into sleep mode for a few seconds and should start at the first request received<br>
 
 ## :hammer: Tools
 
@@ -104,214 +103,6 @@ For study reasons I had also implemented access via "google auth" and locally it
 Locally it works well, and refers to localhost:4000 (in my case), however it is impossible for me to make it operational with the sites where I have deployed the back end and the front end at the moment, because Google only requires first domains level and SSL and https, which at the moment is impossible or very difficult for me for free. Even using redirection services you need to set up a Linux server for example that does the redirection.
 I'm starting to think that there are libraries to help with both the management of the JWT and for Oauth2 but in this case let's say that this is an opportunity to understand how they work basically with their callbacks between the project server and external service with link return to be configured and authorized.
 
-## :blue_book: DataBase MONGO DB MONGOOSE
-
-:it:
-Il database e' sviluppato in MongoDb con servizio cloud integrato.
-
-:uk:
-The database is developed in MongoDb with integrated cloud service.
-There are 5 main tables :
--User
--Group
--Course
--Master
--School
-
-SCHOOL SCHEMA (MONGOOSE) :
-
-```
-{
-  name: {
-  type: String,
-  required: true,
-  unique: true,
-  },
-  site: {
-  type: mongoose.SchemaTypes.Url,
-  }
-}
-
-```
-
-MASTER SCHEMA (MONGOOSE) :
-
-```
-{
-  name: {
-    type: String,
-    required: true,
-  },
-  school: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'School',
-    required: [true, 'Course must belong to a school.'],
-  }
-  }
-
-```
-
-COURSE SCHEMA (MONGOOSE) :
-
-```
-{
-   name: {
-    type: String,
-    required: true,
-  },
-  master: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Master',
-    required: [true, 'Course must belong to a master.'],
-  },
-  school: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'School',
-    required: [true, 'Course must belong to a school.'],
-  },
-  }
-
-```
-
-GROUP SCHEMA (MONGOOSE) :
-
-```
-{
-  name: {
-    type: String,
-    required: [true, 'Group must have a name'],
-    unique: true,
-    index: true, // altrimenti unique non funziona
-  },
-  course: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Course',
-    required: [true, 'Group must refer to a course'],
-  },
-  master: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Master',
-    required: [true, 'Group must refer to a master'],
-  },
-  school: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'School',
-    required: [true, 'Group must refer to a school'],
-  },
-  founder: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User',
-    required: [true, 'Group must refer to a founder'],
-  },
-  participants: [
-    {
-      user: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'User',
-      },
-
-      dateStart: { type: Date, default: Date.now() },
-      dateEnd: { type: Date, default: null },
-    },
-  ],
-
-  maxParticipants: {
-    type: Number,
-    default: 2,
-  },
-  currentParticipantsNumber: {
-    type: Number,
-    virtual: true,
-    get: function () {
-      return this.participants.length;
-    },
-  },
-  chat: [
-    {
-      user: {
-        type: String,
-        required: [true, 'Chat message must have a user'],
-      },
-      message: {
-        type: String,
-        required: [true, 'Chat message must have a message'],
-      },
-      date: {
-        type: Date,
-        default: Date.now,
-        required: [true, 'Chat message must have a date'],
-      },
-    },
-  ]
-  }
-
-```
-
-USER SCHEMA (MONGOOSE) :
-
-```
-{
- userName: {
-    type: String,
-    required: [true, 'A user must have a name'],
-    minlength: 3,
-    maxlength: 30,
-  },
-  email: {
-    type: String,
-    required: [true, 'Please provide email'],
-    unique: true,
-    lowercase: true,
-    validate: [validator.isEmail, 'Please provide a valid email'],
-  },
-  role: {
-    type: String,
-    enum: ['user', 'mod', 'admin', 'tutor'],
-    default: 'user',
-  },
-  password: {
-    type: String,
-    required: [true, 'Please provide a password'],
-    minlength: 8,
-    select: false,
-  },
-  passwordConfirm: {
-    type: String,
-    required: [true, 'Please provide a confirm password'],
-    validate: {
-      // This only works on CREATE and SAVE !!!
-      validator: function (el) {
-        return el === this.password;
-      },
-      message: 'Passwords are not the same!',
-    },
-
-    select: false,
-  },
-  passwordChangedAt: {
-    type: Date,
-    select: false,
-  },
-  passwordResetToken: {
-    type: String,
-    select: false,
-  },
-  passwordResetExpires: {
-    type: Date,
-    select: false,
-  },
-  activeToken: {
-    type: String,
-    select: false,
-  },
-  status: {
-    type: String,
-    enum: ['Pending', 'Active', 'Ban'],
-    default: 'Pending',
-  }
-}
-
-
 ```
 
 ### :triangular_flag_on_post: Note
@@ -323,18 +114,31 @@ Per leggere i campi dipendenti da altre' entita' ricordarsi di usare "populate" 
 To read fields dependent on other entities, remember to use "populate" as in this project excerpt:
 
 ```
+
 {
-    const populateOptions = [
-    { path: 'school', select: 'name' },
-    { path: 'master', select: 'name' },
-    { path: 'course', select: 'name' },
-    { path: 'participants.user', select: 'userName' }, // Aggiunta per popolare i partecipanti
-    { path: 'founder', select: 'userName' }, // Aggiunta per popolare i partecipanti
-  ];
+const populateOptions = [
+{ path: 'school', select: 'name' },
+{ path: 'master', select: 'name' },
+{ path: 'course', select: 'name' },
+{ path: 'participants.user', select: 'userName' }, // Aggiunta per popolare i partecipanti
+{ path: 'founder', select: 'userName' }, // Aggiunta per popolare i partecipanti
+];
 
 }
 
 ```
+
+## :rocket: Chat
+
+:it:
+la chat funziona di base con dei socket in ascolto sul server. la chat e' in tempo reale ma viene acnhe registrata sul database in un campo relativo ad ogni gruppo di studio <br>
+essendo una funziona sperimentale e non oggeto prncipale del progetto scolastico in essere non entro nei particolari qui nella documentazione ma rimango a dispozsizione coi contatti in calce per ulteriori info <br>
+
+:ukn:
+the chat basically works with sockets listening on the server. the chat is in real time but is also recorded on the database in a field relating to each study group<br>
+Since it is an experimental function and not the main object of the existing school project, I will not go into detail here in the documentation but I remain at your disposal with the contacts at the bottom for further information<br>
+
+
 
 ## :bulb: IDEAS
 
@@ -383,9 +187,9 @@ if you want to immediately see the site :
 
 ## :floppy_disk: Installation
 
-First of all, you need Node.js installed.  
+First of all, you need Node.js installed.
 If you don't have it, you can download it here:
-[Node.js](https://nodejs.org/it/download/)  
+[Node.js](https://nodejs.org/it/download/)
 After the installation, you're ready to go.
 you will find instructions for local installation or deployment both in the \front and \back folders in the readme.md relating to the front-end and back-end in detail.
 
@@ -398,6 +202,517 @@ Questa è la documentazione BACK END del progetto , nella root la documentazione
 :uk:
 
 This is the BACK documentation of the project, in the main folder the GENERAL doc and in front folder the FRONT END doc.
+
+## :cop: API - Main endpoints
+
+:it:
+il back end e' in grado di gestire molte altri endpoint ma al momento spiego l'utilizzo di quelli utilizzati nel front end per quello che serve per il
+
+:uk:
+the back end is able to manage many other endpoints but at the moment I will explain the use of those used in the front end for what is needed for the project.
+
+### General
+
+:it:
+La `root` sara' per esempio <br> `localhost:3005` (se il server e' in ascolto come nel mio caso sulla porta 3005)<br> oppure il il dominio che ospita il server on line nel nostro caso<br> `https://s2i-study-buddy-hub-4coach.onrender.com/`.<br>
+Le rotte pincipali sono 5: <br>
+
+:uk:
+For example, the `root` will be <br> `localhost:3005` (if the server is listening on port 3005 as in my case)<br> or the domain that hosts the online server in our case<br> > `https://s2i-study-buddy-hub-4coach.onrender.com/`.<br>
+
+`/test<br>
+`/api/v1/users`<br>
+`/api/v1/schools`<br>
+`/api/v1/masters`<br>
+`/api/v1/courses`<br>
+`/api/v1/groups`<br>
+
+### /test
+
+:it:
+La prima rotta e' molto semplice facendo una `GET` rispondera' con 200 SUCCESS quando il server e' on line . la rotta e' pubblica (le rotte pubbliche sono comunque gestite dal limiter per evitare abusi).<br>
+
+:uk:
+The first route is very simple doing a `GET` will respond with 200 SUCCESS when the server is online. the route is public (public routes are however managed by the limiter to avoid abuse).<br>
+
+### /users
+
+:it:
+La seconda rotta principale `user` contiene : <br>
+
+:uk:
+The second main route `user` contains : <br>
+
+```
+
+{
+
+// THIS ROUTES ARE NOT PROTECT
+GET - users/confirmAccount/:activeToken
+POST - users/signup
+POST - users/login
+GET - users/forgotPassword
+PATCH - users/resetPassword/:token
+
+// THIS ROUTE IS PROTECT ONLY WITH JWT IN HEADERS REQ (bearer token)
+GET - users/validateToken
+
+}
+
+```
+
+#### GET - users/confirmAccount/:activeToken
+
+The active token is the link receveid in the confirmation email after the signup.<br>
+
+For 200 SUCCES case received the JWT token and activate the account from "Pending" to "Active" state in the database.
+
+#### POST - users/signup
+
+`body req:{password:string(min 8) , passwordConfirm(equal to passord) , userName:string(min3,max30), email:string-valid-format-Email-Address}` <br>
+
+For 200 SUCCESS case receive the email for Activate the account
+
+#### POST - users/login
+
+`body req:{password:string(min 8) ,email:string-valid-format-Email-Address}`<br>
+
+For 200 SUCCESS case receive the JWT token for access the site app.
+
+#### POST - users/forgotPassword
+
+`body req:{email:string-valid-format-Email-Address}`<br>
+
+For 200 SUCCESS case receive the email with the temporary link for change the password.
+
+#### PATCH- users/resetPassword:token
+
+the token is the token in the link received via mail after the "forget password request"
+`body req:{password:string(min8),passwordConfirm(string equal to password field )}`<br>
+
+For 200 SUCCESS case receive set the new password in the database.
+
+#### GET - users/validateToken
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.
+
+`body req:{password:string(min8),passwordConfirm(string equal to password field )}`<br>
+`header: jwt bearer token`
+
+For 200 SUCCESS case receive the object with the user details: <br>
+Here a response example
+
+```
+
+{
+status: 'success',
+message: 'Token is valid',
+userName: "claudio dallara",
+email: "claudiodallara77@gmail.com"
+role: "user"
+\_id: 55556545d54s5d45,
+}
+
+```
+
+### ### /schools
+
+:it:
+il prossimo endpoint e' /schools .
+e' un endpoint protetto, bisogna sempre mettere jwt come bearer token nell'headere della richiesta. possono accedere solo gli admin al POST , possono accedere tutti al GET
+:uk:
+the next endpoint is /schools.it is a protected endpoint, you must always put jwt as a bearer token in the request header. Only admins can access POST, everyone can access GET
+
+#### GET - schools/
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.<br>
+
+For 200 SUCCESS case receive the object data whit an array of the groups details: <br>
+Here a response example :
+
+```
+
+{
+status: 'succes',
+results: doc.length,
+data: { data: doc },
+requestedAt: req.requestTime,
+}
+
+```
+
+#### POST - schools/
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.<br>
+This endpoint is for create a new schools, PROTECT only for "admin" <br>
+
+`body req:{name:string,site:valid-email-format)}`<br>
+`header: jwt bearer token`
+
+For 200 SUCCESS case cerate a new school in database and receive the new object create <br>
+
+### ### /schools
+
+:it:
+il prossimo endpoint e' /schools .
+e' un endpoint protetto, bisogna sempre mettere jwt come bearer token nell'headere della richiesta. possono accedere solo gli admin al POST , possono accedere tutti al GET
+:uk:
+the next endpoint is /schools.it is a protected endpoint, you must always put jwt as a bearer token in the request header. Only admins can access POST, everyone can access GET
+
+#### GET - /schools
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.<br>
+
+For 200 SUCCESS case receive the object data with an array of the groups details: <br>
+Here a response example :
+
+```
+
+{
+status: 'succes',
+results: doc.length,
+data: { data: doc },
+requestedAt: req.requestTime,
+}
+
+```
+
+#### POST - /schools
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.<br>
+This endpoint is for create a new schools, PROTECT only for "admin" <br>
+
+`body req:{name:string,site:valid-email-format)}`<br>
+`header: jwt bearer token`
+
+For 200 SUCCESS case create a new school in database and receive the new object create <br>
+
+### ### /masters
+
+:uk:
+the next endpoint is /masters is a protected endpoint, you must always put jwt as a bearer token in the request header. Only admins can access POST, everyone can access GET
+
+#### GET - /masters
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.<br>
+
+For 200 SUCCESS case receive the object data with an array of the masters details: <br>
+Here a response example :
+
+```
+
+{
+status: 'succes',
+results: doc.length,
+data: { data: doc },
+requestedAt: req.requestTime,
+}
+
+```
+
+#### POST - /masters
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.<br>
+This endpoint is for create a new master, PROTECT only for "admin" <br>
+the relevant school to insert is the index `_id` of the home school to be taken from the "schools" table
+
+`body req:{name:string,school:objectId}`<br>
+`header: jwt bearer token`
+
+For 200 SUCCESS case create a new master in database and receive the new object create <br>
+
+### ### /courses
+
+:uk:
+the next endpoint is /course is a protected endpoint, you must always put jwt as a bearer token in the request header. Only admins can access POST, everyone can access GET
+
+#### GET - /courses
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.<br>
+
+For 200 SUCCESS case receive the object data with an array of the courses details: <br>
+Here a response example :
+
+```
+
+{
+status: 'succes',
+results: doc.length,
+data: { data: doc },
+requestedAt: req.requestTime,
+}
+
+```
+
+#### POST - /courses
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.<br>
+This endpoint is for create a new master, PROTECT only for "admin" <br>
+the relevant school to insert is the index `_id` of the home school to be taken from the "schools" table
+the relevant master to insert is the index `_id` of the home master to be taken from the "masters" table
+
+`body req:{name:string,school:objectId),master:objectId)}`<br>
+`header: jwt bearer token`
+
+For 200 SUCCESS case create a new course in database and receive the new object create <br>
+
+### ### /groups
+
+:uk:
+the next endpoint is /groups is a protected endpoint, you must always put jwt as a bearer token in the request header. Everyone (use,admin,mod ecc )can access GET and POST.
+
+#### GET - /groups
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.<br>
+
+For 200 SUCCESS case receive the object data with an array of the groups details: <br>
+Here a response example :
+
+```
+
+{
+status: 'succes',
+results: doc.length,
+data: { data: doc },
+requestedAt: req.requestTime,
+}
+
+```
+
+#### POST - /courses
+
+This endpoint is referred to with a get and putting req in the heder. as bearer token the authorization jwt.<br>
+This endpoint is for create a new group <br>
+the relevant school to insert is the index `_id` of the home school to be taken from the "schools" table
+the relevant master to insert is the index `_id` of the home master to be taken from the "masters" table
+the relevant course to insert is the index `_id` of the home course to be taken from the "courses" table
+
+`body req:{name:string,school:objectId,master:objectId,course:objectId}`<br>
+`header: jwt bearer token`
+
+For 200 SUCCESS case create a new group in database ( the founder is the user who create the group )and receive the new object create <br>
+
+### ### Other Endpoint
+
+:it:
+ci sono altri endpoint pronti nel backend come per esempio, il getOne per le scuole/master/corsi/gruppi, il deleteMe , getMe per l'user, il cambio password ma da loggati ed altro ... ma visto che non sono sviluppati sul front end del progetto sorvolo
+
+:uk:
+there are other endpoints ready in the backend such as, for example, getOne for schools/masters/courses/groups, deleteMe, getMe for the user, changing password but when logged in and more... but since they are not developed on the front end of the flyover project
+
+## :blue_book: DataBase MONGO DB MONGOOSE
+
+:it:
+Il database e' sviluppato in MongoDb con servizio cloud integrato.
+
+:uk:
+The database is developed in MongoDb with integrated cloud service.
+There are 5 main tables :
+-User
+-Group
+-Course
+-Master
+-School
+
+SCHOOL SCHEMA (MONGOOSE) :
+
+```
+
+{
+name: {
+type: String,
+required: true,
+unique: true,
+},
+site: {
+type: mongoose.SchemaTypes.Url,
+}
+}
+
+```
+
+MASTER SCHEMA (MONGOOSE) :
+
+```
+
+{
+name: {
+type: String,
+required: true,
+},
+school: {
+type: mongoose.Schema.ObjectId,
+ref: 'School',
+required: [true, 'Course must belong to a school.'],
+}
+}
+
+```
+
+COURSE SCHEMA (MONGOOSE) :
+
+```
+
+{
+name: {
+type: String,
+required: true,
+},
+master: {
+type: mongoose.Schema.ObjectId,
+ref: 'Master',
+required: [true, 'Course must belong to a master.'],
+},
+school: {
+type: mongoose.Schema.ObjectId,
+ref: 'School',
+required: [true, 'Course must belong to a school.'],
+},
+}
+
+```
+
+GROUP SCHEMA (MONGOOSE) :
+
+```
+
+{
+name: {
+type: String,
+required: [true, 'Group must have a name'],
+unique: true,
+index: true, // altrimenti unique non funziona
+},
+course: {
+type: mongoose.Schema.ObjectId,
+ref: 'Course',
+required: [true, 'Group must refer to a course'],
+},
+master: {
+type: mongoose.Schema.ObjectId,
+ref: 'Master',
+required: [true, 'Group must refer to a master'],
+},
+school: {
+type: mongoose.Schema.ObjectId,
+ref: 'School',
+required: [true, 'Group must refer to a school'],
+},
+founder: {
+type: mongoose.Schema.ObjectId,
+ref: 'User',
+required: [true, 'Group must refer to a founder'],
+},
+participants: [
+{
+user: {
+type: mongoose.Schema.ObjectId,
+ref: 'User',
+},
+
+      dateStart: { type: Date, default: Date.now() },
+      dateEnd: { type: Date, default: null },
+    },
+
+],
+
+maxParticipants: {
+type: Number,
+default: 2,
+},
+currentParticipantsNumber: {
+type: Number,
+virtual: true,
+get: function () {
+return this.participants.length;
+},
+},
+chat: [
+{
+user: {
+type: String,
+required: [true, 'Chat message must have a user'],
+},
+message: {
+type: String,
+required: [true, 'Chat message must have a message'],
+},
+date: {
+type: Date,
+default: Date.now,
+required: [true, 'Chat message must have a date'],
+},
+},
+]
+}
+
+```
+
+USER SCHEMA (MONGOOSE) :
+
+```
+
+{
+userName: {
+type: String,
+required: [true, 'A user must have a name'],
+minlength: 3,
+maxlength: 30,
+},
+email: {
+type: String,
+required: [true, 'Please provide email'],
+unique: true,
+lowercase: true,
+validate: [validator.isEmail, 'Please provide a valid email'],
+},
+role: {
+type: String,
+enum: ['user', 'mod', 'admin', 'tutor'],
+default: 'user',
+},
+password: {
+type: String,
+required: [true, 'Please provide a password'],
+minlength: 8,
+select: false,
+},
+passwordConfirm: {
+type: String,
+required: [true, 'Please provide a confirm password'],
+validate: {
+// This only works on CREATE and SAVE !!!
+validator: function (el) {
+return el === this.password;
+},
+message: 'Passwords are not the same!',
+},
+
+    select: false,
+
+},
+passwordChangedAt: {
+type: Date,
+select: false,
+},
+passwordResetToken: {
+type: String,
+select: false,
+},
+passwordResetExpires: {
+type: Date,
+select: false,
+},
+activeToken: {
+type: String,
+select: false,
+},
+status: {
+type: String,
+enum: ['Pending', 'Active', 'Ban'],
+default: 'Pending',
+}
+}
 
 ## :hammer: Tools
 
@@ -416,7 +731,7 @@ Per semplicita' ho aggiunto un file `config.fake` dovrebbe servire per semplific
 :uk:
 For simplicity I added a `config.fake` file which should serve to simplify the drafting of the file itself locally or in the way in which the environment variables are set in the chosen deployment system. In my case on render you can load an entire file with copy and paste of its contents (first I remove the commented lines) and in a single copy and paste you can create all the environment variables otherwise they can be loaded one at a time.
 
-![Screen Render Env](/assets/pictures/renderEnv.png "Screen Render Env")
+![Screen Render Env](/assets/pictures/pictures/renderEnv.png "Screen Render Env")
 
 :it:
 Per il settings del progetto Render.com ci chiedera' di scegliere una repo da Github, nel nostro progetto indicheremo la cartella back perche' il link della repo punta all'intero progetto invece noi vogliamo scendere nella cartella `\back`.
@@ -428,8 +743,8 @@ For the project settings Render.com will ask us to choose a repo from Github, in
 Also be careful to insert "yarn" as the build command and `node server.js` as the start command in my case or the main back file in general.
 We choose yarn even if we use npm locally because render works better this way for node js.
 
-![Setting Render 1](/assets/pictures/render1Setting.png "Setting Render 1")
-![Setting Render 2](/assets/pictures/render2Setting.png "Setting Render 2")
+![Setting Render 1](/assets/pictures/pictures/render1Setting.png "Setting Render 1")
+![Setting Render 2](/assets/pictures/pictures/render2Setting.png "Setting Render 2")
 
 :it:
 La variabile NODE_ENV e' impostata su develpment nll'esempio questo vuol dire che puntera' al frontend locale impostato su localhost:4000 .
@@ -443,9 +758,9 @@ To work on a local server, start the program locally, remember to coordinate the
 Another difference affected by the NODE_ENV variable is that if in production it uses the BREVO service and sends real emails while in development it uses the fictitious MAILTRAP service.
 
 ```
-{
-        # NODE_ENV=production
-    NODE_ENV=development
+
+{ # NODE_ENV=production
+NODE_ENV=development
 
     # PORT SETTING
     PORT=3005
@@ -484,9 +799,8 @@ Another difference affected by the NODE_ENV variable is that if in production it
     EMAIL_PORT=25
 
 }
-```
 
-## :rocket: Chat
+```
 
 :it:
 Ho voluto provare anche a gestire una chat. Ho scoperto l'utilizzo dei socket ed ho inziato a sperimentare un po' ... il file principale che gestisce la chat e' socketManager.js
@@ -503,9 +817,9 @@ Se non ce l'hai puoi scaricarlo qui:
 Dopo l'installazione, sei pronto per partire.
 
 :uk:
-First of all, you need Node.js installed.  
+First of all, you need Node.js installed.
 If you don't have it, you can download it here:
-[Node.js](https://nodejs.org/it/download/)  
+[Node.js](https://nodejs.org/it/download/)
 After the installation, you're ready to go.
 
 ### 1 - Clone the repository
@@ -532,10 +846,11 @@ Above we have already listed all the environment variables to be set.
 I remember to leave the desired mode uncommented if development will point to the local front end and will use "mailtrap" by default, if production then it will point to the front end indicated as web and will use "brevo" to send real emails
 
 ```
-{
-    # NODE_ENV=production
-     NODE_ENV=development`
+
+{ # NODE_ENV=production
+NODE_ENV=development`
 }
+
 ```
 
 ### 4 - Start it
@@ -543,10 +858,12 @@ I remember to leave the desired mode uncommented if development will point to th
 add this scripts at your "package.json" file :
 
 ```
+
 "scripts": {
-    "start": "SET NODE_ENV=development&&nodemon server.js",
-    "start:prod": "SET NODE_ENV=production&&nodemon server.js",
-  },
+"start": "SET NODE_ENV=development&&nodemon server.js",
+"start:prod": "SET NODE_ENV=production&&nodemon server.js",
+},
+
 ```
 
 `npm start` - start in DEV mode default (error's message are set for developers)
@@ -588,7 +905,7 @@ The app will have a Cover which is the "Home page" when you are not logged in.
 The other menu items for non-logged in users will be "Sign Up", "Login" and "About" which is the only page among these together with "Page Not Found" for unmanaged paths which will be the same for authenticated users and no.
 The menu for authenticated users will instead be "Home" (where you will manage the study groups you have signed up to), "Groups" where you can create a new group and subscribe to others as well as navigate between the groups. There will be ' the "About" page which, as already mentioned, will be the only one if we do not consider "Page not found" accessible in the same way by authenticated or non-authenticated users. There will obviously be the "Logout" page and finally only for users "admin" a panel to create new schools, masters and courses to which the groups will refer.
 
-### :: ScreenSchot
+### :: ScreenShot
 
 :it:
 la app oltre alla gestionde dell'autentificazione che reputo molto approfondita ma in realta' che non richiede un manuale utente particolare, i lresto dell'app e' appena accennata, idee per renderla piu completa e complessa nel readme del progetto principale nella root folder.
@@ -675,7 +992,7 @@ For react query and axios settings
 "socket.io-client": "^4.7.2",
 "react-scroll-to-bottom": "^4.2.0",
 
-## :paw_prints: Settings confign.env
+## :paw_prints: Settings config.env
 
 :it:
 Di file config.env ne ho pensati 2 , sono da creare quindi 2 file :

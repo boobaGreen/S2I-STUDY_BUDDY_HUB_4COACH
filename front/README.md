@@ -121,7 +121,7 @@ For react query and axios settings
 "socket.io-client": "^4.7.2",
 "react-scroll-to-bottom": "^4.2.0",
 
-## :paw_prints: Settings confign.env
+## :paw_prints: Settings config.env
 
 :it:
 Di file config.env ne ho pensati 2 , sono da creare quindi 2 file :

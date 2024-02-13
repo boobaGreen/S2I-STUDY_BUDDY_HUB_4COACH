@@ -7,7 +7,7 @@ export async function getAll(path, jwtToken) {
 
   if (error) {
     console.error(error);
-    throw new Error("Auth Error in validate token phase");
+    throw new Error("Error in the request");
   }
 
   return data;

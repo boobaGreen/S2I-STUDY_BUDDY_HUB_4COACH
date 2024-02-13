@@ -11,9 +11,6 @@ router.get('/oauthGoogle', authController.oauthGoogle);
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
 router.get('/confirmAccount/:activeToken', authController.updateStatus);
-// router.post('/googleSignup', authController.googleSignup);
-// router.post('/googleLogin', authController.googleLogin);
-
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 

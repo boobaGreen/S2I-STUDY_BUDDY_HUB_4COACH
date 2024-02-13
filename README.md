@@ -7,6 +7,10 @@ Questa è la documentazione GENERALE del progetto , nelle sottocartelle front e 
 :uk:
 If you use the online test app and experience delays in the response at the first login, wait 5 minutes and try again, probably the free render.com server went into sleep mode for a few seconds and should start at the first request received<br>
 
+## :boom: Try Now!
+
+[StudyBuddyHub](https://studybuddyhub.netlify.app/)
+
 ## :hammer: Tools
 
 ![Javascript](https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&labelColor=black&logo=javascript&logoColor=F0DB4F)
@@ -41,7 +45,7 @@ Inspired by these last years of intense study and by the UN objectives which in 
 ## :art: Pricipal Functions
 
 :it:
--Gli utenti possono iscriversi o essere fondatori di tre gruppi al massimo contomporanmente
+-Gli utenti possono iscriversi o essere fondatori di tre gruppi al massimo contemporaneamente
 -Gli utenti possono creare un gruppo studio solo se prima scelgono un corso su cui appogiare il gruppo.
 -Un partecipante ad un gruppo puo' accedere alla chat privata del gruppo.
 -Un utente puo' cancellarsi da un gruppo e se e' il fondatore eliminare il gruppo.
@@ -82,8 +86,9 @@ Tailwind is the leading choice for style management.
 ![Alt text](/assets/pictures/jwt.png "Jwt")
 
 :it:
-La sicurezza per l'accesso e' gestita con un token JWT .
-La password viene registrata sul database encryptata.
+La sicurezza per l'accesso e' gestita con token JWT / HTTP ONLY COOKIES per l'autorizzazione principale alle api.
+La password viene registrata sul database encryptata.(bcrypt).
+Invce i token di conferma account e cambio password scordata visto che sono temporanei e gia' spediti via mail ho deciso per questo progetto di lasciarli solo bcrytati senza gestione jwt.
 C'e un controllo quindi sia lato back end che front end sull'autorizzazione solo gli utenti loggati possono vedere alcuni parti del menu front end ma per molte operazioni sensibili il controllo viene effettuato anche lato back.
 Una volta registrato un nuovo utente sara' in "status : pending" finche' non clicchera' il link di autorizzazione nella mail ricevuta sull'indirizzo di registrazione. Una volta cliccato sul link lo stato diventera' "Active".
 I tokens con il link di conferma via mail dopo la registrazione e anche quello per il cambio passowrd provvisorio ( che ha validtat' di 10 minuti) hanno solo uno livello di crypting con Bcrypt ma non sono jwt come il gettone principlae di autentificazione.
@@ -95,6 +100,7 @@ Incomincio a pensare che ci siano delle librerie per aiutarsi sia con la gestion
 :uk:
 Access security is managed with a JWT token.
 The password is recorded in the encrypted database.
+However, since the account confirmation and forgotten password change tokens are temporary and already sent via email, for this project I decided to leave them only bcrytated without jwt management.
 There is therefore a control on both the back end and front end on the authorization only logged in users can see some parts of the front end menu but for many sensitive operations the control is also carried out on the back side.
 Once registered, a new user will be in "status: pending" until they click the authorization link in the email received on the registration address. Once you click on the link the status will become "Active".
 The tokens with the confirmation link via email after registration and also the one for the temporary password change (which is valid for 10 minutes) only have one level of encryption with Bcrypt but are not jwt like the main authentication token.
@@ -126,8 +132,6 @@ const populateOptions = [
 
 }
 
-```
-
 ## :rocket: Chat
 
 :it:
@@ -137,8 +141,6 @@ essendo una funziona sperimentale e non oggeto prncipale del progetto scolastico
 :ukn:
 the chat basically works with sockets listening on the server. the chat is in real time but is also recorded on the database in a field relating to each study group<br>
 Since it is an experimental function and not the main object of the existing school project, I will not go into detail here in the documentation but I remain at your disposal with the contacts at the bottom for further information<br>
-
-
 
 ## :bulb: IDEAS
 
@@ -199,4 +201,3 @@ you will find instructions for local installation or deployment both in the \fro
 
 Any questions? Send me an e-mail here: claudiodallara77@gmail.com <br>
 You can find my Linkedin profile here: https://www.linkedin.com/in/claudio-dall-ara-244816175/
-```

@@ -132,7 +132,7 @@ const confirmAccount = (Model) =>
 exports.requestUrlOgoogle = catchAsync(async (req, res, next) => {
   res.header('Access-Control-Allow-Origin', `${FRONT_PATH}`);
   res.header('Referrer-Policy', 'no-referrer-when-downgrade');
-  const redirectUrl = 'http://127.0.0.1:3005/api/v1/users/oauthGoogle';
+  const redirectUrl = `${FRONT_PATH}/api/v1/users/oauthGoogle`;
   const oAuth2Client = new OAuth2Client(
     process.env.CLIENT_ID,
     process.env.CLIENT_SECRET,

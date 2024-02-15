@@ -1,8 +1,8 @@
 # :mortar_board: SBH - Study Buddy Hub - MERN STACK PROJECT
 
 :it:
-Se si utilizza la app di prova on line e si riscontrano dei ritardi nella risposta al primo accesso aspettare 5 minuti e riprovare porbabilemente il server di render.com gratuito e' andato in sleep mode pochi secondi e dovrebbe partire alla prima richiesta riccevuta<br>
-Questa è la documentazione GENERALE del progetto , nelle sottocartelle front e back si troveranno le documentazioni dettagliate per il back end ed il front end. menter nella versione `/assets/documentation.pdf` e `/assets/documentation.md` abbiamo i 3 readme generale,back-end e front-end tutti insieme un osotto l'altro.<br>
+Se si utilizza la app di prova on line e si riscontrano dei ritardi nella risposta al primo accesso aspettare 1 minuto e riprovare porbabilemente il server di render.com gratuito e' andato in sleep mode pochi secondi e dovrebbe partire alla prima richiesta ricevuta<br>
+Questa è la documentazione GENERALE del progetto , nelle sottocartelle front e back si troveranno le documentazioni dettagliate per il back end ed il front end. menter nella versione `/assets/documentation.pdf` e `/assets/documentation.md` si trovano i 3 readme generale,back-end e front-end tutti insieme uno sotto l'altro.<br>
 
 :uk:
 If you use the online test app and experience delays in the response at the first login, wait 5 minutes and try again, probably the free render.com server went into sleep mode for a few seconds and should start at the first request received<br>
@@ -36,7 +36,7 @@ This project is the final MERN project for start2impact full stack developer mas
 
 :it:
 La richiesta principale dell'esercizio era sviluppare l'autentificazione al sistema e la registrazione utente inoltre bisognava dare qualche funzionalita a piacere .
-Ispirato da quest'ultimi anni si studio intenso e dagli obiettivi onu a cui a sua volta si inspira s2i e dalle persone conosciute in questa avventura ho voluto fare qualcosa che stimolasse lo studio di gruppo visto che io in prima persona e ho visto tanti altri dopo di me soprattuto all'inizio di un corso si trovano molto propensi allo studio di gruppo , lanciano qualche richiesta sul discord ma non sempre e' facile coordinare le tempistiche ma secondo me e' un esigenza servizio che potrebbe riempire questa piccola lacuna , supportare nell'incontro e nella creazione di piccoli gruppi studio. seguiranno ulteriori dettagli
+Ispirato da quest'ultimi anni di studio e dagli obiettivi onu a cui a sua volta si inspira s2i e dalle persone conosciute in questa avventura ho voluto fare qualcosa che stimolasse lo studio di gruppo visto che io in prima persona e ho visto tanti altri dopo di me soprattuto all'inizio di un corso si trovano molto propensi allo studio di gruppo , lanciano qualche richiesta sul discord ma non sempre e' facile coordinare le tempistiche ma secondo me e' un esigenza servizio che potrebbe riempire questa piccola lacuna , supportare nell'incontro e nella creazione di piccoli gruppi studio. seguiranno ulteriori dettagli
 
 :uk:
 The main request of the exercise was to develop system authentication and user registration and it was also necessary to provide some functionality as desired.
@@ -52,7 +52,7 @@ Inspired by these last years of intense study and by the UN objectives which in 
 -Solo gli admin possono acceder alla Admin Panel per creare Scuole,Master e Corsi su cui gli utenti potranno appoggiare i loro gruppi studio
 
 -Login tramite mail e password
--Sign up che cre la scheda utente ma in stato Pending manda una email che poi andra' aperta e cliccato il link di conferma per rendere l'account ACtive
+-Sign up che crea la scheda utente ma in stato Pending. poi manda una email che poi andra' aperta e cliccato il link di conferma per rendere l'account Active
 -Funzione di Forgot password che mandera' una mail con link che ha validita' 10 minuti per eventuale cambio password.
 
 :uk:
@@ -91,11 +91,10 @@ La password viene registrata sul database encryptata.(bcrypt).
 Invce i token di conferma account e cambio password scordata visto che sono temporanei e gia' spediti via mail ho deciso per questo progetto di lasciarli solo bcrytati senza gestione jwt.
 C'e un controllo quindi sia lato back end che front end sull'autorizzazione solo gli utenti loggati possono vedere alcuni parti del menu front end ma per molte operazioni sensibili il controllo viene effettuato anche lato back.
 Una volta registrato un nuovo utente sara' in "status : pending" finche' non clicchera' il link di autorizzazione nella mail ricevuta sull'indirizzo di registrazione. Una volta cliccato sul link lo stato diventera' "Active".
-I tokens con il link di conferma via mail dopo la registrazione e anche quello per il cambio passowrd provvisorio ( che ha validtat' di 10 minuti) hanno solo uno livello di crypting con Bcrypt ma non sono jwt come il gettone principlae di autentificazione.
+I tokens con il link di conferma via mail dopo la registrazione e anche quello per il cambio passowrd provvisorio ( che ha validita- di 10 minuti) hanno solo uno livello di crypting con Bcrypt ma non sono jwt come il gettone principale di autentificazione.
 
 Avevo per motivi di studio anche implementato l'accesso tramite "google auth" ed in locale funziona con alcune limitazioni per esempio 100 indirizzi di "test" massimo che possono interagire col progetto , e con notifica aggiuntiva di google che l'app non 'e sicura seguendo queste info per chi fosse interessato ad approfondire : [Google OAuth2](https://developers.google.com/identity/protocols/oauth2?hl=it).
 In locale funziona bene , e fa riferimento a localhost:4000 (nel mio caso), invece per renderlo operativo con i siti dove ho deployato il back end ed il front end al momento mi e' impossibile , perche' google richiede solo domini di primo livello e SSL e https , cosa che al momento mi e' impossibile o molto difficile gratuitamente . Anche usando servizi di reindirizzamento serve montare un server Linux per esempio che faccia il reindirezzamento.
-Incomincio a pensare che ci siano delle librerie per aiutarsi sia con la gestione del Jwt sia per Oauth2 ma in questo caso diciamo che e' sto un occasione per capire come funzionano alla base con le loro richiamate tra server del progetto e servizio esterno con link di ritorno da configurare ed autorizzare.
 
 :uk:
 Access security is managed with a JWT token.
@@ -107,7 +106,6 @@ The tokens with the confirmation link via email after registration and also the 
 
 For study reasons I had also implemented access via "google auth" and locally it works with some limitations for example 100 maximum "test" addresses that can interact with the project, and with additional notification from Google that the app is not secure by following this info for those interested in learning more: [Google OAuth2](https://developers.google.com/identity/protocols/oauth2?hl=it).
 Locally it works well, and refers to localhost:4000 (in my case), however it is impossible for me to make it operational with the sites where I have deployed the back end and the front end at the moment, because Google only requires first domains level and SSL and https, which at the moment is impossible or very difficult for me for free. Even using redirection services you need to set up a Linux server for example that does the redirection.
-I'm starting to think that there are libraries to help with both the management of the JWT and for Oauth2 but in this case let's say that this is an opportunity to understand how they work basically with their callbacks between the project server and external service with link return to be configured and authorized.
 
 ```
 
@@ -135,8 +133,8 @@ const populateOptions = [
 ## :rocket: Chat
 
 :it:
-la chat funziona di base con dei socket in ascolto sul server. la chat e' in tempo reale ma viene acnhe registrata sul database in un campo relativo ad ogni gruppo di studio <br>
-essendo una funziona sperimentale e non oggeto prncipale del progetto scolastico in essere non entro nei particolari qui nella documentazione ma rimango a dispozsizione coi contatti in calce per ulteriori info <br>
+la chat funziona di base con dei socket in ascolto sul server. la chat e' in tempo reale ma viene anche registrata sul database in un campo relativo ad ogni gruppo di studio <br>
+essendo una funziona sperimentale e non oggeto prncipale del progetto scolastico in essere non entro nei particolari qui nella documentazione ma rimango a disposizione nei contatti in calce per ulteriori info <br>
 
 :ukn:
 the chat basically works with sockets listening on the server. the chat is in real time but is also recorded on the database in a field relating to each study group<br>
@@ -150,9 +148,9 @@ In futuro si potrebbero implementare dei punteggi bonus / malus , che si ottengo
 
 Si potrebbe pensare di monetizzare in almeno 3 modi:
 
-- funzioni aggiuntive per gli utenti premium , per esempio adesso il numero massimo di gruppi contemporanei e' 3, si potrebbe rendere piu alto o manipolare quest numero dietro un abbonamento premium (occasione per approfondire e testare Sripe o altre librerie per i pagamenti) o per esempio rendere il fatto di creare piu' di un gruppo una funzione premium invce iscriversi una funzione fre ecc ecc
-- gestione dei tutor , utenti esperti che abbiano dimostrato frequenza costanza ed affidabilita' coi punteggi e badge interni, una volta completato un master per esempio potrebbero diventare Tutoe, essere sceltri da un gruppo che andranno a seguire e che paghera' una somma extra che anfra' al tutor ed in precentuale al sito
-- servizio esterno per le scuole , una scuola per inserirsi nell'elenco e aggiunegre i suoi master ed i suoi corsi dovrebbe pagare una somma annuale al sito , ed aggiunegre cosi un servizio molto fidelizzante fra quelli proposti ... in qesto caso si potrebbe escludere dalla vista dell'user la scelta delle altre scuole per esempio.
+- funzioni aggiuntive per gli utenti premium , per esempio adesso il numero massimo di gruppi contemporanei e' 3, si potrebbe rendere piu alto o manipolare questo numero dietro un abbonamento premium (occasione per approfondire e testare Stripe o altre librerie per i pagamenti reali) o per esempio rendere il fatto di creare piu' di un gruppo una funzione premium invce iscriversi una funzione free ecc ecc
+- gestione dei tutor , utenti esperti che abbiano dimostrato frequenza costanza ed affidabilita' coi punteggi e badge interni, una volta completato un master per esempio potrebbero diventare Tutor, essere sceltri da un gruppo che andranno a seguire e che paghera' una somma extra che andra' al tutor ed in precentuale al sito
+- servizio esterno per le scuole , una scuola per inserirsi nell'elenco e aggiunegre i suoi master ed i suoi corsi dovrebbe pagare una somma annuale al sito , ed aggiungere cosi un servizio molto fidelizzante fra quelli proposti ... in questo caso si potrebbe escludere dalla vista dell'user la scelta delle altre scuole per esempio.
 
 :uk:
 The project could also have profile photo management but it became a choice to manage which further complicated the project, so I did a bit of research but for the moment I wanted to ignore it.
@@ -160,9 +158,9 @@ In the future, bonus/malus scores could be implemented, which are obtained from 
 
 You could think of monetizing in at least 3 ways:
 
-- additional functions for premium users, for example now the maximum number of simultaneous groups is 3, this number could be made higher or manipulated with a premium subscription (an opportunity to delve deeper and test Sripe or other payment libraries) or to example, making the fact of creating more than one group a premium function instead of signing up a free function etc etc
-- management of tutors, expert users who have demonstrated frequency, consistency and reliability with scores and internal badges, once they have completed a master's degree, for example they could become Tutoe, be chosen by a group that they will follow and who will pay an extra sum which will then ' to the tutor and in percentage to the site
-- external service for schools, for a school to be included in the list and add its masters and courses it would have to pay an annual sum to the site, and thus add a very loyalty-inducing service among those offered... in this case it could be excluded from the user's view the choice of other schools for example.
+- additional functions for premium users, for example now the maximum number of simultaneous groups is 3, this number could be made higher or manipulated behind a premium subscription (an opportunity to delve deeper and test Stripe or other libraries for real payments) or for example, making the fact of creating more than one group a premium function instead of signing up a free function etc etc
+- management of tutors, expert users who have demonstrated frequency, consistency and reliability with internal scores and badges, for example once they have completed a master's degree they could become tutors, be chosen by a group that they will follow and who will pay an extra sum which will ' to the tutor and in percentage to the site
+- external service for schools, for a school to be included in the list and add its masters and courses it would have to pay an annual sum to the site, and thus add a very loyalty-building service among those offered... in this case it could be excluded from the user's view the choice of other schools for example.
 
 ## :tv: External Service
 
@@ -202,6 +200,7 @@ you will find instructions for local installation or deployment both in the \fro
 Any questions? Send me an e-mail here: claudiodallara77@gmail.com <br>
 You can find my Linkedin profile here: https://www.linkedin.com/in/claudio-dall-ara-244816175/
 
+# :mortar_board: SBH - Study Buddy Hub - BACK END
 
 # :mortar_board: SBH - Study Buddy Hub - BACK END
 
@@ -216,7 +215,7 @@ This is the BACK documentation of the project, in the main folder the GENERAL do
 ## :cop: API - Main endpoints
 
 :it:
-il back end e' in grado di gestire molte altri endpoint ma al momento spiego l'utilizzo di quelli utilizzati nel front end per quello che serve per il
+il back end e' in grado di gestire altri endpoint ma al momento spiego l'utilizzo di quelli utilizzati nel front end
 
 :uk:
 the back end is able to manage many other endpoints but at the moment I will explain the use of those used in the front end for what is needed for the project.
@@ -717,7 +716,7 @@ USER SCHEMA (MONGOOSE) :
 ## :dart: Settings for env file e Render.com
 
 :it:
-Per semplicita' ho aggiunto un file `config.fake` dovrebbe servire per semplificare la stesura del file stesso in locale o nel modo in qui si settono le variabile d'ambiente nel sistema di deploy scelto. Nel mio caso su render si puo' caricare un file intero con copia incolla del suo contenuto (prima tolgo le righe commentate ) ed in un sol ocopia incolla si riescono a craicare tutte le variabili d'ambiente altrimenti si posono aricare una alla volta.
+Per semplicita' ho aggiunto un file `config.fake` dovrebbe servire per semplificare la stesura del file stesso in locale o nel modo in qui si settono le variabile d'ambiente nel sistema di deploy scelto. Nel mio caso su render si puo' caricare un file intero con copia incolla del suo contenuto (prima tolgo le righe commentate ) ed in un solo copia incolla si riescono a caricare tutte le variabili d'ambiente altrimenti si possono caricare una alla volta.
 :uk:
 For simplicity I added a `config.fake` file which should serve to simplify the drafting of the file itself locally or in the way in which the environment variables are set in the chosen deployment system. In my case on render you can load an entire file with copy and paste of its contents (first I remove the commented lines) and in a single copy and paste you can create all the environment variables otherwise they can be loaded one at a time.
 
@@ -727,7 +726,7 @@ For simplicity I added a `config.fake` file which should serve to simplify the d
 Per il settings del progetto Render.com ci chiedera' di scegliere una repo da Github, nel nostro progetto indicheremo la cartella back perche' il link della repo punta all'intero progetto invece noi vogliamo scendere nella cartella `\back`.
 Il progetto e' da lasciare cosi come e' sara' cura di Render.com creare la build , e poi deployare e lanciare il server.
 Inoltre attenzione ad inserire come build command "yarn" e come start command `node server.js`nel mio caso o il file principale del back in generale.
-Scegliamo yarn anche se in locale usaimo npm perhc'e render funziona meglio cosi per node js.
+Scegliamo yarn anche se in locale usaimo npm perche render funziona meglio cosi per node js.
 :uk:
 For the project settings Render.com will ask us to choose a repo from Github, in our project we will indicate the back folder because the repo link points to the entire project instead we want to go to the `\back` folder.
 Also be careful to insert "yarn" as the build command and `node server.js` as the start command in my case or the main back file in general.
@@ -737,10 +736,10 @@ We choose yarn even if we use npm locally because render works better this way f
 ![Setting Render 2](/assets/pictures/pictures/render2Setting.png 'Setting Render 2')
 
 :it:
-La variabile NODE_ENV e' impostata su develpment nll'esempio questo vuol dire che puntera' al frontend locale impostato su localhost:4000 .
-Se si vuole puntare al front end di produzione in questo progetto https://studybuddyhub.netlify.app allora commentare la riga # NODE_ENV=development e toglier il commento # alla riga NODE_ENV=production.
+La variabile NODE_ENV e' impostata su develpment nell'esempio questo vuol dire che puntera' al frontend locale impostato su localhost:4000 .
+Se si vuole puntare al front end di produzione in questo progetto https://studybuddyhub.netlify.app allora commentare la riga # NODE_ENV=development e toglierw il commento # alla riga NODE_ENV=production.
 Per lavorare su server locale far partire il programma da locale ricordarsi di coordinare il frontend in tal caso .
-ALtra differenza in cui incide la variabile NODE_ENV e' che se in production usa il servizio di BREVO e manda mail reali se invece in development utilizza il servizio fittizio di MAILTRAP.
+Altra differenza in cui incide la variabile NODE_ENV e' che se in production allora usa il servizio di BREVO e manda mail reali se invece in development utilizza il servizio fittizio di MAILTRAP.
 :uk:
 The NODE_ENV variable is set to developpment in the example, this means that it will point to the local frontend set to localhost:4000.
 If you want to point to the production front end in this project https://studybuddyhub.netlify.app then comment out the line # NODE_ENV=development and uncomment # the line NODE_ENV=production.
@@ -881,22 +880,12 @@ This is the FronEnd React Documentation for a larger MERN project.
 
 This project is the final MERN project for start2impact full stack developer master course.
 
-## :punch: General
-
-:it:
-La richiesta principale dell'esercizio era sviluppare l'autentificazione al sistema e la registrazione utente inoltre bisognava dare qualche funzionalita a piacere .
-Ispirato da quest'ultimi anni si studio intenso e dagli obiettivi onu a cui a sua volta si inspira s2i e dalle persone conosciute in questa avventura ho voluto fare qualcosa che stimolasse lo studio di gruppo visto che io in prima persona e ho visto tanti altri dopo di me soprattuto all'inizio di un corso si trovano molto propensi allo studio di gruppo , lanciano qualche richiesta sul discord ma non sempre e' facile coordinare le tempistiche ma secondo me e' un esigenza servizio che potrebbe riempire questa piccola lacuna , supportare nell'incontro e nella creazione di piccoli gruppi studio. seguiranno ulteriori dettagli
-
-:gb:
-The main request of the exercise was to develop system authentication and user registration and it was also necessary to provide some functionality as desired.
-Inspired by these last years of intense study and by the UN objectives which in turn inspire s2i and by the people I met in this adventure, I wanted to do something that stimulated group study since I personally and I have seen many others afterwards of me, especially at the beginning of a course, they find themselves very inclined towards group study, they launch some requests on the discord but it is not always easy to coordinate the timing but in my opinion it is a need for a service that could fill this small gap, support in ' meeting and creating small study groups. further details will follow
-
 ## :bulb: How it Works
 
 :it:
 La app avra' una Cover che e' la "Home page" quando non si e' loggati.
 Le altre voci del menu per i non loggati saranno "Sign Up" , "Login" ed "About" che e' l'unica pagina tra queste insieme a "Page Not Found" per i path non gestiti che saranno uguali per gli utenti autenfificati e no.
-Il menu per gli utenti autentificati invece sara' "Home"(dove si gestiranno i gruppi studio a cui si e' iscritti), "Groups" dove si potra creare un nuovo gruppo ed iscriversi ad altri oltre che navigare fra i gruppi.Ci sara' la pagina "About" che come gia' detto sara' l'unica se no nconsideriamo "Page not found" accessibile allo stesso modo da utenti autentificati o no.Ci sara' ovviamente la pagina per il "Logout" ed infine solo per utenti "admin" un pannello per creare nuove scuole , master e corsi a cui i gruppi faranno riferimento.
+Il menu per gli utenti autentificati invece sara' "Home"(dove si gestiranno i gruppi studio a cui si e' iscritti), "Groups" dove si potra creare un nuovo gruppo ed iscriversi ad altri oltre che navigare fra i gruppi.Ci sara' la pagina "About" che come gia' detto sara' l'unica (se non consideriamo "Page not found")accessibile allo stesso modo da utenti autentificati o no.Ci sara' ovviamente la pagina per il "Logout" ed infine solo per utenti "admin" un pannello per creare nuove scuole , master e corsi a cui i gruppi faranno riferimento.
 
 :en:
 The app will have a Cover which is the "Home page" when you are not logged in.
@@ -906,13 +895,12 @@ The menu for authenticated users will instead be "Home" (where you will manage t
 ### :: ScreenShot
 
 :it:
-la app oltre alla gestionde dell'autentificazione che reputo molto approfondita ma in realta' che non richiede un manuale utente particolare, i lresto dell'app e' appena accennata, idee per renderla piu completa e complessa nel readme del progetto principale nella root folder.
+la app oltre alla gestione dell'autentificazione piuttosto complessa lato gestione ma che in realta' non richiede un manuale per l utente particolare...ha il resto dell'app e' appena accennata, idee per renderla piu completa e complessa nel readme del progetto principale nella root folder.
 
-Nonostante questo metto qualche screenshots di esempio.
 :uk:
-the app in addition to the authentication management which I consider very in-depth but in reality does not require a particular user manual, the rest of the app is just mentioned, ideas to make it more complete and complex in the readme of the main project in the root folder.
+the app in addition to the rather complex authentication management on the management side but which in reality does not require a manual for the particular user... the rest of the app is just mentioned, ideas to make it more complete and complex in the project readme root in the root folder.
 
-Despite this I post some example screenshots:
+Example screenshot>
 
 ![Setting Render 2](/assets/pictures/render2Setting.png "Setting Render 2")
 ![cover](/assets/pictures/cover.png "cover")
@@ -994,7 +982,7 @@ For react query and axios settings
 
 :it:
 Di file config.env ne ho pensati 2 , sono da creare quindi 2 file :
-il primo si chiamra' `.env.development` ed avra' nel mio caso con il server in locale che gira su localhost:3005 :
+il primo si chiamra' `.env.development` ed avra' nel mio caso co il server in locale che gira su localhost:3005 :
 
 :uk:
 I thought of 2 config.env files, so 2 files need to be created:

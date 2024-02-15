@@ -12,22 +12,12 @@ This is the FronEnd React Documentation for a larger MERN project.
 
 This project is the final MERN project for start2impact full stack developer master course.
 
-## :punch: General
-
-:it:
-La richiesta principale dell'esercizio era sviluppare l'autentificazione al sistema e la registrazione utente inoltre bisognava dare qualche funzionalita a piacere .
-Ispirato da quest'ultimi anni si studio intenso e dagli obiettivi onu a cui a sua volta si inspira s2i e dalle persone conosciute in questa avventura ho voluto fare qualcosa che stimolasse lo studio di gruppo visto che io in prima persona e ho visto tanti altri dopo di me soprattuto all'inizio di un corso si trovano molto propensi allo studio di gruppo , lanciano qualche richiesta sul discord ma non sempre e' facile coordinare le tempistiche ma secondo me e' un esigenza servizio che potrebbe riempire questa piccola lacuna , supportare nell'incontro e nella creazione di piccoli gruppi studio. seguiranno ulteriori dettagli
-
-:gb:
-The main request of the exercise was to develop system authentication and user registration and it was also necessary to provide some functionality as desired.
-Inspired by these last years of intense study and by the UN objectives which in turn inspire s2i and by the people I met in this adventure, I wanted to do something that stimulated group study since I personally and I have seen many others afterwards of me, especially at the beginning of a course, they find themselves very inclined towards group study, they launch some requests on the discord but it is not always easy to coordinate the timing but in my opinion it is a need for a service that could fill this small gap, support in ' meeting and creating small study groups. further details will follow
-
 ## :bulb: How it Works
 
 :it:
 La app avra' una Cover che e' la "Home page" quando non si e' loggati.
 Le altre voci del menu per i non loggati saranno "Sign Up" , "Login" ed "About" che e' l'unica pagina tra queste insieme a "Page Not Found" per i path non gestiti che saranno uguali per gli utenti autenfificati e no.
-Il menu per gli utenti autentificati invece sara' "Home"(dove si gestiranno i gruppi studio a cui si e' iscritti), "Groups" dove si potra creare un nuovo gruppo ed iscriversi ad altri oltre che navigare fra i gruppi.Ci sara' la pagina "About" che come gia' detto sara' l'unica se no nconsideriamo "Page not found" accessibile allo stesso modo da utenti autentificati o no.Ci sara' ovviamente la pagina per il "Logout" ed infine solo per utenti "admin" un pannello per creare nuove scuole , master e corsi a cui i gruppi faranno riferimento.
+Il menu per gli utenti autentificati invece sara' "Home"(dove si gestiranno i gruppi studio a cui si e' iscritti), "Groups" dove si potra creare un nuovo gruppo ed iscriversi ad altri oltre che navigare fra i gruppi.Ci sara' la pagina "About" che come gia' detto sara' l'unica (se non consideriamo "Page not found")accessibile allo stesso modo da utenti autentificati o no.Ci sara' ovviamente la pagina per il "Logout" ed infine solo per utenti "admin" un pannello per creare nuove scuole , master e corsi a cui i gruppi faranno riferimento.
 
 :en:
 The app will have a Cover which is the "Home page" when you are not logged in.
@@ -37,13 +27,12 @@ The menu for authenticated users will instead be "Home" (where you will manage t
 ### :: ScreenShot
 
 :it:
-la app oltre alla gestionde dell'autentificazione che reputo molto approfondita ma in realta' che non richiede un manuale utente particolare, i lresto dell'app e' appena accennata, idee per renderla piu completa e complessa nel readme del progetto principale nella root folder.
+la app oltre alla gestione dell'autentificazione piuttosto complessa lato gestione ma che in realta' non richiede un manuale per l utente particolare...ha il resto dell'app e' appena accennata, idee per renderla piu completa e complessa nel readme del progetto principale nella root folder.
 
-Nonostante questo metto qualche screenshots di esempio.
 :uk:
-the app in addition to the authentication management which I consider very in-depth but in reality does not require a particular user manual, the rest of the app is just mentioned, ideas to make it more complete and complex in the readme of the main project in the root folder.
+the app in addition to the rather complex authentication management on the management side but which in reality does not require a manual for the particular user... the rest of the app is just mentioned, ideas to make it more complete and complex in the project readme root in the root folder.
 
-Despite this I post some example screenshots:
+Example screenshot>
 
 ![Setting Render 2](/assets/pictures/render2Setting.png "Setting Render 2")
 ![cover](/assets/pictures/cover.png "cover")
@@ -125,7 +114,7 @@ For react query and axios settings
 
 :it:
 Di file config.env ne ho pensati 2 , sono da creare quindi 2 file :
-il primo si chiamra' `.env.development` ed avra' nel mio caso con il server in locale che gira su localhost:3005 :
+il primo si chiamra' `.env.development` ed avra' nel mio caso co il server in locale che gira su localhost:3005 :
 
 :uk:
 I thought of 2 config.env files, so 2 files need to be created:

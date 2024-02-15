@@ -11,7 +11,7 @@ This is the BACK documentation of the project, in the main folder the GENERAL do
 ## :cop: API - Main endpoints
 
 :it:
-il back end e' in grado di gestire molte altri endpoint ma al momento spiego l'utilizzo di quelli utilizzati nel front end per quello che serve per il
+il back end e' in grado di gestire altri endpoint ma al momento spiego l'utilizzo di quelli utilizzati nel front end
 
 :uk:
 the back end is able to manage many other endpoints but at the moment I will explain the use of those used in the front end for what is needed for the project.
@@ -512,7 +512,7 @@ USER SCHEMA (MONGOOSE) :
 ## :dart: Settings for env file e Render.com
 
 :it:
-Per semplicita' ho aggiunto un file `config.fake` dovrebbe servire per semplificare la stesura del file stesso in locale o nel modo in qui si settono le variabile d'ambiente nel sistema di deploy scelto. Nel mio caso su render si puo' caricare un file intero con copia incolla del suo contenuto (prima tolgo le righe commentate ) ed in un sol ocopia incolla si riescono a craicare tutte le variabili d'ambiente altrimenti si posono aricare una alla volta.
+Per semplicita' ho aggiunto un file `config.fake` dovrebbe servire per semplificare la stesura del file stesso in locale o nel modo in qui si settono le variabile d'ambiente nel sistema di deploy scelto. Nel mio caso su render si puo' caricare un file intero con copia incolla del suo contenuto (prima tolgo le righe commentate ) ed in un solo copia incolla si riescono a caricare tutte le variabili d'ambiente altrimenti si possono caricare una alla volta.
 :uk:
 For simplicity I added a `config.fake` file which should serve to simplify the drafting of the file itself locally or in the way in which the environment variables are set in the chosen deployment system. In my case on render you can load an entire file with copy and paste of its contents (first I remove the commented lines) and in a single copy and paste you can create all the environment variables otherwise they can be loaded one at a time.
 
@@ -522,7 +522,7 @@ For simplicity I added a `config.fake` file which should serve to simplify the d
 Per il settings del progetto Render.com ci chiedera' di scegliere una repo da Github, nel nostro progetto indicheremo la cartella back perche' il link della repo punta all'intero progetto invece noi vogliamo scendere nella cartella `\back`.
 Il progetto e' da lasciare cosi come e' sara' cura di Render.com creare la build , e poi deployare e lanciare il server.
 Inoltre attenzione ad inserire come build command "yarn" e come start command `node server.js`nel mio caso o il file principale del back in generale.
-Scegliamo yarn anche se in locale usaimo npm perhc'e render funziona meglio cosi per node js.
+Scegliamo yarn anche se in locale usaimo npm perche render funziona meglio cosi per node js.
 :uk:
 For the project settings Render.com will ask us to choose a repo from Github, in our project we will indicate the back folder because the repo link points to the entire project instead we want to go to the `\back` folder.
 Also be careful to insert "yarn" as the build command and `node server.js` as the start command in my case or the main back file in general.
@@ -532,10 +532,10 @@ We choose yarn even if we use npm locally because render works better this way f
 ![Setting Render 2](/assets/pictures/pictures/render2Setting.png 'Setting Render 2')
 
 :it:
-La variabile NODE_ENV e' impostata su develpment nll'esempio questo vuol dire che puntera' al frontend locale impostato su localhost:4000 .
-Se si vuole puntare al front end di produzione in questo progetto https://studybuddyhub.netlify.app allora commentare la riga # NODE_ENV=development e toglier il commento # alla riga NODE_ENV=production.
+La variabile NODE_ENV e' impostata su develpment nell'esempio questo vuol dire che puntera' al frontend locale impostato su localhost:4000 .
+Se si vuole puntare al front end di produzione in questo progetto https://studybuddyhub.netlify.app allora commentare la riga # NODE_ENV=development e toglierw il commento # alla riga NODE_ENV=production.
 Per lavorare su server locale far partire il programma da locale ricordarsi di coordinare il frontend in tal caso .
-ALtra differenza in cui incide la variabile NODE_ENV e' che se in production usa il servizio di BREVO e manda mail reali se invece in development utilizza il servizio fittizio di MAILTRAP.
+Altra differenza in cui incide la variabile NODE_ENV e' che se in production allora usa il servizio di BREVO e manda mail reali se invece in development utilizza il servizio fittizio di MAILTRAP.
 :uk:
 The NODE_ENV variable is set to developpment in the example, this means that it will point to the local frontend set to localhost:4000.
 If you want to point to the production front end in this project https://studybuddyhub.netlify.app then comment out the line # NODE_ENV=development and uncomment # the line NODE_ENV=production.

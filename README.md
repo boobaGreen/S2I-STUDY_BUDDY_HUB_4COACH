@@ -1,8 +1,8 @@
 # :mortar_board: SBH - Study Buddy Hub - MERN STACK PROJECT
 
 :it:
-Se si utilizza la app di prova on line e si riscontrano dei ritardi nella risposta al primo accesso aspettare 5 minuti e riprovare porbabilemente il server di render.com gratuito e' andato in sleep mode pochi secondi e dovrebbe partire alla prima richiesta riccevuta<br>
-Questa è la documentazione GENERALE del progetto , nelle sottocartelle front e back si troveranno le documentazioni dettagliate per il back end ed il front end. menter nella versione `/assets/documentation.pdf` e `/assets/documentation.md` abbiamo i 3 readme generale,back-end e front-end tutti insieme un osotto l'altro.<br>
+Se si utilizza la app di prova on line e si riscontrano dei ritardi nella risposta al primo accesso aspettare 1 minuto e riprovare porbabilemente il server di render.com gratuito e' andato in sleep mode pochi secondi e dovrebbe partire alla prima richiesta ricevuta<br>
+Questa è la documentazione GENERALE del progetto , nelle sottocartelle front e back si troveranno le documentazioni dettagliate per il back end ed il front end. menter nella versione `/assets/documentation.pdf` e `/assets/documentation.md` si trovano i 3 readme generale,back-end e front-end tutti insieme uno sotto l'altro.<br>
 
 :uk:
 If you use the online test app and experience delays in the response at the first login, wait 5 minutes and try again, probably the free render.com server went into sleep mode for a few seconds and should start at the first request received<br>
@@ -36,7 +36,7 @@ This project is the final MERN project for start2impact full stack developer mas
 
 :it:
 La richiesta principale dell'esercizio era sviluppare l'autentificazione al sistema e la registrazione utente inoltre bisognava dare qualche funzionalita a piacere .
-Ispirato da quest'ultimi anni si studio intenso e dagli obiettivi onu a cui a sua volta si inspira s2i e dalle persone conosciute in questa avventura ho voluto fare qualcosa che stimolasse lo studio di gruppo visto che io in prima persona e ho visto tanti altri dopo di me soprattuto all'inizio di un corso si trovano molto propensi allo studio di gruppo , lanciano qualche richiesta sul discord ma non sempre e' facile coordinare le tempistiche ma secondo me e' un esigenza servizio che potrebbe riempire questa piccola lacuna , supportare nell'incontro e nella creazione di piccoli gruppi studio. seguiranno ulteriori dettagli
+Ispirato da quest'ultimi anni di studio e dagli obiettivi onu a cui a sua volta si inspira s2i e dalle persone conosciute in questa avventura ho voluto fare qualcosa che stimolasse lo studio di gruppo visto che io in prima persona e ho visto tanti altri dopo di me soprattuto all'inizio di un corso si trovano molto propensi allo studio di gruppo , lanciano qualche richiesta sul discord ma non sempre e' facile coordinare le tempistiche ma secondo me e' un esigenza servizio che potrebbe riempire questa piccola lacuna , supportare nell'incontro e nella creazione di piccoli gruppi studio. seguiranno ulteriori dettagli
 
 :uk:
 The main request of the exercise was to develop system authentication and user registration and it was also necessary to provide some functionality as desired.
@@ -52,7 +52,7 @@ Inspired by these last years of intense study and by the UN objectives which in 
 -Solo gli admin possono acceder alla Admin Panel per creare Scuole,Master e Corsi su cui gli utenti potranno appoggiare i loro gruppi studio
 
 -Login tramite mail e password
--Sign up che cre la scheda utente ma in stato Pending manda una email che poi andra' aperta e cliccato il link di conferma per rendere l'account ACtive
+-Sign up che crea la scheda utente ma in stato Pending. poi manda una email che poi andra' aperta e cliccato il link di conferma per rendere l'account Active
 -Funzione di Forgot password che mandera' una mail con link che ha validita' 10 minuti per eventuale cambio password.
 
 :uk:
@@ -91,11 +91,10 @@ La password viene registrata sul database encryptata.(bcrypt).
 Invce i token di conferma account e cambio password scordata visto che sono temporanei e gia' spediti via mail ho deciso per questo progetto di lasciarli solo bcrytati senza gestione jwt.
 C'e un controllo quindi sia lato back end che front end sull'autorizzazione solo gli utenti loggati possono vedere alcuni parti del menu front end ma per molte operazioni sensibili il controllo viene effettuato anche lato back.
 Una volta registrato un nuovo utente sara' in "status : pending" finche' non clicchera' il link di autorizzazione nella mail ricevuta sull'indirizzo di registrazione. Una volta cliccato sul link lo stato diventera' "Active".
-I tokens con il link di conferma via mail dopo la registrazione e anche quello per il cambio passowrd provvisorio ( che ha validtat' di 10 minuti) hanno solo uno livello di crypting con Bcrypt ma non sono jwt come il gettone principlae di autentificazione.
+I tokens con il link di conferma via mail dopo la registrazione e anche quello per il cambio passowrd provvisorio ( che ha validita- di 10 minuti) hanno solo uno livello di crypting con Bcrypt ma non sono jwt come il gettone principale di autentificazione.
 
 Avevo per motivi di studio anche implementato l'accesso tramite "google auth" ed in locale funziona con alcune limitazioni per esempio 100 indirizzi di "test" massimo che possono interagire col progetto , e con notifica aggiuntiva di google che l'app non 'e sicura seguendo queste info per chi fosse interessato ad approfondire : [Google OAuth2](https://developers.google.com/identity/protocols/oauth2?hl=it).
 In locale funziona bene , e fa riferimento a localhost:4000 (nel mio caso), invece per renderlo operativo con i siti dove ho deployato il back end ed il front end al momento mi e' impossibile , perche' google richiede solo domini di primo livello e SSL e https , cosa che al momento mi e' impossibile o molto difficile gratuitamente . Anche usando servizi di reindirizzamento serve montare un server Linux per esempio che faccia il reindirezzamento.
-Incomincio a pensare che ci siano delle librerie per aiutarsi sia con la gestione del Jwt sia per Oauth2 ma in questo caso diciamo che e' sto un occasione per capire come funzionano alla base con le loro richiamate tra server del progetto e servizio esterno con link di ritorno da configurare ed autorizzare.
 
 :uk:
 Access security is managed with a JWT token.
@@ -107,7 +106,6 @@ The tokens with the confirmation link via email after registration and also the 
 
 For study reasons I had also implemented access via "google auth" and locally it works with some limitations for example 100 maximum "test" addresses that can interact with the project, and with additional notification from Google that the app is not secure by following this info for those interested in learning more: [Google OAuth2](https://developers.google.com/identity/protocols/oauth2?hl=it).
 Locally it works well, and refers to localhost:4000 (in my case), however it is impossible for me to make it operational with the sites where I have deployed the back end and the front end at the moment, because Google only requires first domains level and SSL and https, which at the moment is impossible or very difficult for me for free. Even using redirection services you need to set up a Linux server for example that does the redirection.
-I'm starting to think that there are libraries to help with both the management of the JWT and for Oauth2 but in this case let's say that this is an opportunity to understand how they work basically with their callbacks between the project server and external service with link return to be configured and authorized.
 
 ```
 
@@ -135,8 +133,8 @@ const populateOptions = [
 ## :rocket: Chat
 
 :it:
-la chat funziona di base con dei socket in ascolto sul server. la chat e' in tempo reale ma viene acnhe registrata sul database in un campo relativo ad ogni gruppo di studio <br>
-essendo una funziona sperimentale e non oggeto prncipale del progetto scolastico in essere non entro nei particolari qui nella documentazione ma rimango a dispozsizione coi contatti in calce per ulteriori info <br>
+la chat funziona di base con dei socket in ascolto sul server. la chat e' in tempo reale ma viene anche registrata sul database in un campo relativo ad ogni gruppo di studio <br>
+essendo una funziona sperimentale e non oggeto prncipale del progetto scolastico in essere non entro nei particolari qui nella documentazione ma rimango a disposizione nei contatti in calce per ulteriori info <br>
 
 :ukn:
 the chat basically works with sockets listening on the server. the chat is in real time but is also recorded on the database in a field relating to each study group<br>
@@ -150,9 +148,9 @@ In futuro si potrebbero implementare dei punteggi bonus / malus , che si ottengo
 
 Si potrebbe pensare di monetizzare in almeno 3 modi:
 
-- funzioni aggiuntive per gli utenti premium , per esempio adesso il numero massimo di gruppi contemporanei e' 3, si potrebbe rendere piu alto o manipolare quest numero dietro un abbonamento premium (occasione per approfondire e testare Sripe o altre librerie per i pagamenti) o per esempio rendere il fatto di creare piu' di un gruppo una funzione premium invce iscriversi una funzione fre ecc ecc
-- gestione dei tutor , utenti esperti che abbiano dimostrato frequenza costanza ed affidabilita' coi punteggi e badge interni, una volta completato un master per esempio potrebbero diventare Tutoe, essere sceltri da un gruppo che andranno a seguire e che paghera' una somma extra che anfra' al tutor ed in precentuale al sito
-- servizio esterno per le scuole , una scuola per inserirsi nell'elenco e aggiunegre i suoi master ed i suoi corsi dovrebbe pagare una somma annuale al sito , ed aggiunegre cosi un servizio molto fidelizzante fra quelli proposti ... in qesto caso si potrebbe escludere dalla vista dell'user la scelta delle altre scuole per esempio.
+- funzioni aggiuntive per gli utenti premium , per esempio adesso il numero massimo di gruppi contemporanei e' 3, si potrebbe rendere piu alto o manipolare questo numero dietro un abbonamento premium (occasione per approfondire e testare Stripe o altre librerie per i pagamenti reali) o per esempio rendere il fatto di creare piu' di un gruppo una funzione premium invce iscriversi una funzione free ecc ecc
+- gestione dei tutor , utenti esperti che abbiano dimostrato frequenza costanza ed affidabilita' coi punteggi e badge interni, una volta completato un master per esempio potrebbero diventare Tutor, essere sceltri da un gruppo che andranno a seguire e che paghera' una somma extra che andra' al tutor ed in precentuale al sito
+- servizio esterno per le scuole , una scuola per inserirsi nell'elenco e aggiunegre i suoi master ed i suoi corsi dovrebbe pagare una somma annuale al sito , ed aggiungere cosi un servizio molto fidelizzante fra quelli proposti ... in questo caso si potrebbe escludere dalla vista dell'user la scelta delle altre scuole per esempio.
 
 :uk:
 The project could also have profile photo management but it became a choice to manage which further complicated the project, so I did a bit of research but for the moment I wanted to ignore it.
@@ -160,9 +158,9 @@ In the future, bonus/malus scores could be implemented, which are obtained from 
 
 You could think of monetizing in at least 3 ways:
 
-- additional functions for premium users, for example now the maximum number of simultaneous groups is 3, this number could be made higher or manipulated with a premium subscription (an opportunity to delve deeper and test Sripe or other payment libraries) or to example, making the fact of creating more than one group a premium function instead of signing up a free function etc etc
-- management of tutors, expert users who have demonstrated frequency, consistency and reliability with scores and internal badges, once they have completed a master's degree, for example they could become Tutoe, be chosen by a group that they will follow and who will pay an extra sum which will then ' to the tutor and in percentage to the site
-- external service for schools, for a school to be included in the list and add its masters and courses it would have to pay an annual sum to the site, and thus add a very loyalty-inducing service among those offered... in this case it could be excluded from the user's view the choice of other schools for example.
+- additional functions for premium users, for example now the maximum number of simultaneous groups is 3, this number could be made higher or manipulated behind a premium subscription (an opportunity to delve deeper and test Stripe or other libraries for real payments) or for example, making the fact of creating more than one group a premium function instead of signing up a free function etc etc
+- management of tutors, expert users who have demonstrated frequency, consistency and reliability with internal scores and badges, for example once they have completed a master's degree they could become tutors, be chosen by a group that they will follow and who will pay an extra sum which will ' to the tutor and in percentage to the site
+- external service for schools, for a school to be included in the list and add its masters and courses it would have to pay an annual sum to the site, and thus add a very loyalty-building service among those offered... in this case it could be excluded from the user's view the choice of other schools for example.
 
 ## :tv: External Service
 

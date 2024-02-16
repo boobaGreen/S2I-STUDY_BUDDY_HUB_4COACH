@@ -1,3 +1,6 @@
+v.1.0.6 limiter
+temporarily disabled to test for an inherent error <br>
+
 # :mortar_board: SBH - Study Buddy Hub - MERN STACK PROJECT
 
 :it:

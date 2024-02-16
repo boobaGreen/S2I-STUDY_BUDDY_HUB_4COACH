@@ -112,8 +112,6 @@ The tokens with the confirmation link via email after registration and also the 
 For study reasons I had also implemented access via "google auth" and locally it works with some limitations for example 100 maximum "test" addresses that can interact with the project, and with additional notification from Google that the app is not secure by following this info for those interested in learning more: [Google OAuth2](https://developers.google.com/identity/protocols/oauth2?hl=it).
 Locally it works well, and refers to localhost:4000 (in my case), however it is impossible for me to make it operational with the sites where I have deployed the back end and the front end at the moment, because Google only requires first domains level and SSL and https, which at the moment is impossible or very difficult for me for free. Even using redirection services you need to set up a Linux server for example that does the redirection.
 
-```
-
 ### :triangular_flag_on_post: Note
 
 :it:
@@ -204,3 +202,4 @@ you will find instructions for local installation or deployment both in the \fro
 
 Any questions? Send me an e-mail here: claudiodallara77@gmail.com <br>
 You can find my Linkedin profile here: https://www.linkedin.com/in/claudio-dall-ara-244816175/
+```

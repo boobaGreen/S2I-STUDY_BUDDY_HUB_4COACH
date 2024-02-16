@@ -112,8 +112,6 @@ The tokens with the confirmation link via email after registration and also the 
 For study reasons I had also implemented access via "google auth" and locally it works with some limitations for example 100 maximum "test" addresses that can interact with the project, and with additional notification from Google that the app is not secure by following this info for those interested in learning more: [Google OAuth2](https://developers.google.com/identity/protocols/oauth2?hl=it).
 Locally it works well, and refers to localhost:4000 (in my case), however it is impossible for me to make it operational with the sites where I have deployed the back end and the front end at the moment, because Google only requires first domains level and SSL and https, which at the moment is impossible or very difficult for me for free. Even using redirection services you need to set up a Linux server for example that does the redirection.
 
-```
-
 ### :triangular_flag_on_post: Note
 
 :it:
@@ -258,19 +256,21 @@ La seconda rotta principale `user` contiene : <br>
 The second main route `user` contains : <br>
 
 ```
+
 {
 
- // THIS ROUTES ARE NOT PROTECT
-  GET   - users/confirmAccount/:activeToken
-  POST  - users/signup
-  POST  - users/login
-  GET   - users/forgotPassword
-  PATCH - users/resetPassword/:token
+// THIS ROUTES ARE NOT PROTECT
+GET - users/confirmAccount/:activeToken
+POST - users/signup
+POST - users/login
+GET - users/forgotPassword
+PATCH - users/resetPassword/:token
 
-  // THIS ROUTE IS PROTECT ONLY WITH JWT IN HEADERS REQ (bearer token)
-  GET   - users/validateToken
+// THIS ROUTE IS PROTECT ONLY WITH JWT IN HEADERS REQ (bearer token)
+GET - users/validateToken
 
 }
+
 ```
 
 #### GET - users/confirmAccount/:activeToken
@@ -315,13 +315,14 @@ For 200 SUCCESS case receive the object with the user details: <br>
 Here a response example
 
 ```
+
 {
-  status: 'success',
-  message: 'Token is valid',
-  userName: "claudio dallara",
-  email: "claudiodallara77@gmail.com"
-  role: "user"
-  _id: 55556545d54s5d45,
+status: 'success',
+message: 'Token is valid',
+userName: "claudio dallara",
+email: "claudiodallara77@gmail.com"
+role: "user"
+\_id: 55556545d54s5d45,
 }
 
 ```
@@ -342,12 +343,14 @@ For 200 SUCCESS case receive the object data whit an array of the groups details
 Here a response example :
 
 ```
-  {
-  status: 'succes',
-  results: doc.length,
-  data: { data: doc },
-  requestedAt: req.requestTime,
-  }
+
+{
+status: 'succes',
+results: doc.length,
+data: { data: doc },
+requestedAt: req.requestTime,
+}
+
 ```
 
 #### POST - schools/
@@ -376,12 +379,14 @@ For 200 SUCCESS case receive the object data with an array of the groups details
 Here a response example :
 
 ```
-  {
-  status: 'succes',
-  results: doc.length,
-  data: { data: doc },
-  requestedAt: req.requestTime,
-  }
+
+{
+status: 'succes',
+results: doc.length,
+data: { data: doc },
+requestedAt: req.requestTime,
+}
+
 ```
 
 #### POST - /schools
@@ -407,12 +412,14 @@ For 200 SUCCESS case receive the object data with an array of the masters detail
 Here a response example :
 
 ```
-  {
-  status: 'succes',
-  results: doc.length,
-  data: { data: doc },
-  requestedAt: req.requestTime,
-  }
+
+{
+status: 'succes',
+results: doc.length,
+data: { data: doc },
+requestedAt: req.requestTime,
+}
+
 ```
 
 #### POST - /masters
@@ -439,12 +446,14 @@ For 200 SUCCESS case receive the object data with an array of the courses detail
 Here a response example :
 
 ```
-  {
-  status: 'succes',
-  results: doc.length,
-  data: { data: doc },
-  requestedAt: req.requestTime,
-  }
+
+{
+status: 'succes',
+results: doc.length,
+data: { data: doc },
+requestedAt: req.requestTime,
+}
+
 ```
 
 #### POST - /courses
@@ -472,12 +481,14 @@ For 200 SUCCESS case receive the object data with an array of the groups details
 Here a response example :
 
 ```
-  {
-  status: 'succes',
-  results: doc.length,
-  data: { data: doc },
-  requestedAt: req.requestTime,
-  }
+
+{
+status: 'succes',
+results: doc.length,
+data: { data: doc },
+requestedAt: req.requestTime,
+}
+
 ```
 
 #### POST - /courses
@@ -518,15 +529,16 @@ There are 5 main tables :
 SCHOOL SCHEMA (MONGOOSE) :
 
 ```
+
 {
-  name: {
-  type: String,
-  required: true,
-  unique: true,
-  },
-  site: {
-  type: mongoose.SchemaTypes.Url,
-  }
+name: {
+type: String,
+required: true,
+unique: true,
+},
+site: {
+type: mongoose.SchemaTypes.Url,
+}
 }
 
 ```
@@ -534,178 +546,184 @@ SCHOOL SCHEMA (MONGOOSE) :
 MASTER SCHEMA (MONGOOSE) :
 
 ```
+
 {
-  name: {
-    type: String,
-    required: true,
-  },
-  school: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'School',
-    required: [true, 'Course must belong to a school.'],
-  }
-  }
+name: {
+type: String,
+required: true,
+},
+school: {
+type: mongoose.Schema.ObjectId,
+ref: 'School',
+required: [true, 'Course must belong to a school.'],
+}
+}
 
 ```
 
 COURSE SCHEMA (MONGOOSE) :
 
 ```
+
 {
-   name: {
-    type: String,
-    required: true,
-  },
-  master: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Master',
-    required: [true, 'Course must belong to a master.'],
-  },
-  school: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'School',
-    required: [true, 'Course must belong to a school.'],
-  },
-  }
+name: {
+type: String,
+required: true,
+},
+master: {
+type: mongoose.Schema.ObjectId,
+ref: 'Master',
+required: [true, 'Course must belong to a master.'],
+},
+school: {
+type: mongoose.Schema.ObjectId,
+ref: 'School',
+required: [true, 'Course must belong to a school.'],
+},
+}
 
 ```
 
 GROUP SCHEMA (MONGOOSE) :
 
 ```
+
 {
-  name: {
-    type: String,
-    required: [true, 'Group must have a name'],
-    unique: true,
-    index: true, // altrimenti unique non funziona
-  },
-  course: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Course',
-    required: [true, 'Group must refer to a course'],
-  },
-  master: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'Master',
-    required: [true, 'Group must refer to a master'],
-  },
-  school: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'School',
-    required: [true, 'Group must refer to a school'],
-  },
-  founder: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User',
-    required: [true, 'Group must refer to a founder'],
-  },
-  participants: [
-    {
-      user: {
-        type: mongoose.Schema.ObjectId,
-        ref: 'User',
-      },
+name: {
+type: String,
+required: [true, 'Group must have a name'],
+unique: true,
+index: true, // altrimenti unique non funziona
+},
+course: {
+type: mongoose.Schema.ObjectId,
+ref: 'Course',
+required: [true, 'Group must refer to a course'],
+},
+master: {
+type: mongoose.Schema.ObjectId,
+ref: 'Master',
+required: [true, 'Group must refer to a master'],
+},
+school: {
+type: mongoose.Schema.ObjectId,
+ref: 'School',
+required: [true, 'Group must refer to a school'],
+},
+founder: {
+type: mongoose.Schema.ObjectId,
+ref: 'User',
+required: [true, 'Group must refer to a founder'],
+},
+participants: [
+{
+user: {
+type: mongoose.Schema.ObjectId,
+ref: 'User',
+},
 
       dateStart: { type: Date, default: Date.now() },
       dateEnd: { type: Date, default: null },
     },
-  ],
 
-  maxParticipants: {
-    type: Number,
-    default: 2,
-  },
-  currentParticipantsNumber: {
-    type: Number,
-    virtual: true,
-    get: function () {
-      return this.participants.length;
-    },
-  },
-  chat: [
-    {
-      user: {
-        type: String,
-        required: [true, 'Chat message must have a user'],
-      },
-      message: {
-        type: String,
-        required: [true, 'Chat message must have a message'],
-      },
-      date: {
-        type: Date,
-        default: Date.now,
-        required: [true, 'Chat message must have a date'],
-      },
-    },
-  ]
-  }
+],
+
+maxParticipants: {
+type: Number,
+default: 2,
+},
+currentParticipantsNumber: {
+type: Number,
+virtual: true,
+get: function () {
+return this.participants.length;
+},
+},
+chat: [
+{
+user: {
+type: String,
+required: [true, 'Chat message must have a user'],
+},
+message: {
+type: String,
+required: [true, 'Chat message must have a message'],
+},
+date: {
+type: Date,
+default: Date.now,
+required: [true, 'Chat message must have a date'],
+},
+},
+]
+}
 
 ```
 
 USER SCHEMA (MONGOOSE) :
 
 ```
+
 {
- userName: {
-    type: String,
-    required: [true, 'A user must have a name'],
-    minlength: 3,
-    maxlength: 30,
-  },
-  email: {
-    type: String,
-    required: [true, 'Please provide email'],
-    unique: true,
-    lowercase: true,
-    validate: [validator.isEmail, 'Please provide a valid email'],
-  },
-  role: {
-    type: String,
-    enum: ['user', 'mod', 'admin', 'tutor'],
-    default: 'user',
-  },
-  password: {
-    type: String,
-    required: [true, 'Please provide a password'],
-    minlength: 8,
-    select: false,
-  },
-  passwordConfirm: {
-    type: String,
-    required: [true, 'Please provide a confirm password'],
-    validate: {
-      // This only works on CREATE and SAVE !!!
-      validator: function (el) {
-        return el === this.password;
-      },
-      message: 'Passwords are not the same!',
-    },
+userName: {
+type: String,
+required: [true, 'A user must have a name'],
+minlength: 3,
+maxlength: 30,
+},
+email: {
+type: String,
+required: [true, 'Please provide email'],
+unique: true,
+lowercase: true,
+validate: [validator.isEmail, 'Please provide a valid email'],
+},
+role: {
+type: String,
+enum: ['user', 'mod', 'admin', 'tutor'],
+default: 'user',
+},
+password: {
+type: String,
+required: [true, 'Please provide a password'],
+minlength: 8,
+select: false,
+},
+passwordConfirm: {
+type: String,
+required: [true, 'Please provide a confirm password'],
+validate: {
+// This only works on CREATE and SAVE !!!
+validator: function (el) {
+return el === this.password;
+},
+message: 'Passwords are not the same!',
+},
 
     select: false,
-  },
-  passwordChangedAt: {
-    type: Date,
-    select: false,
-  },
-  passwordResetToken: {
-    type: String,
-    select: false,
-  },
-  passwordResetExpires: {
-    type: Date,
-    select: false,
-  },
-  activeToken: {
-    type: String,
-    select: false,
-  },
-  status: {
-    type: String,
-    enum: ['Pending', 'Active', 'Ban'],
-    default: 'Pending',
-  }
+
+},
+passwordChangedAt: {
+type: Date,
+select: false,
+},
+passwordResetToken: {
+type: String,
+select: false,
+},
+passwordResetExpires: {
+type: Date,
+select: false,
+},
+activeToken: {
+type: String,
+select: false,
+},
+status: {
+type: String,
+enum: ['Pending', 'Active', 'Ban'],
+default: 'Pending',
+}
 }
 
 ## :hammer: Tools
@@ -725,7 +743,7 @@ Per semplicita' ho aggiunto un file `config.fake` dovrebbe servire per semplific
 :uk:
 For simplicity I added a `config.fake` file which should serve to simplify the drafting of the file itself locally or in the way in which the environment variables are set in the chosen deployment system. In my case on render you can load an entire file with copy and paste of its contents (first I remove the commented lines) and in a single copy and paste you can create all the environment variables otherwise they can be loaded one at a time.
 
-![Screen Render Env](/assets/pictures/pictures/renderEnv.png 'Screen Render Env')
+![Screen Render Env](/assets/pictures/pictures/renderEnv.png "Screen Render Env")
 
 :it:
 Per il settings del progetto Render.com ci chiedera' di scegliere una repo da Github, nel nostro progetto indicheremo la cartella back perche' il link della repo punta all'intero progetto invece noi vogliamo scendere nella cartella `\back`.
@@ -737,8 +755,8 @@ For the project settings Render.com will ask us to choose a repo from Github, in
 Also be careful to insert "yarn" as the build command and `node server.js` as the start command in my case or the main back file in general.
 We choose yarn even if we use npm locally because render works better this way for node js.
 
-![Setting Render 1](/assets/pictures/pictures/render1Setting.png 'Setting Render 1')
-![Setting Render 2](/assets/pictures/pictures/render2Setting.png 'Setting Render 2')
+![Setting Render 1](/assets/pictures/pictures/render1Setting.png "Setting Render 1")
+![Setting Render 2](/assets/pictures/pictures/render2Setting.png "Setting Render 2")
 
 :it:
 La variabile NODE_ENV e' impostata su develpment nell'esempio questo vuol dire che puntera' al frontend locale impostato su localhost:4000 .
@@ -869,6 +887,7 @@ add this scripts at your "package.json" file :
 
 Any questions? Send me an e-mail here: claudiodallara77@gmail.com <br>
 You can find my Linkedin profile here: https://www.linkedin.com/in/claudio-dall-ara-244816175/
+
 ```
 
 # :mortar_board: SBH - Study Buddy Hub - Front End
@@ -994,8 +1013,10 @@ I thought of 2 config.env files, so 2 files need to be created:
 the first will be called `.env.development` and in my case will have the local server running on localhost:3005
 
 ```
+
 {VITE_APP_BASE_URL=http://localhost:3005/api/v1
 VITE_APP_BASE_URL_SOCKET=http://localhost:3005}
+
 ```
 
 :it:
@@ -1005,8 +1026,10 @@ il secondo si chiamera' `.env.production` ed avra' nel mio caso:
 the second will be called `.env.production` and will have in my case:
 
 ```
+
 {VITE_APP_BASE_URL=https://s2i-study-buddy-hub-4coach.onrender.com/api/v1
 VITE_APP_BASE_URL_SOCKET=https://s2i-study-buddy-hub-4coach.onrender.com}
+
 ```
 
 ## :tv: Deploy on netlify
@@ -1018,9 +1041,9 @@ if you want to immediately test the on line app :
 
 ## :floppy_disk: Installation
 
-First of all, you need Node.js installed.  
+First of all, you need Node.js installed.
 If you don't have it, you can download it here:
-[Node.js](https://nodejs.org/it/download/)  
+[Node.js](https://nodejs.org/it/download/)
 After the installation, you're ready to go.
 
 ### 1 - Clone the repository
@@ -1048,3 +1071,4 @@ REMEBER: we are in the "front" folder now!
 
 Any questions? Send me an e-mail here: claudiodallara77@gmail.com <br>
 You can find my Linkedin profile here: https://www.linkedin.com/in/claudio-dall-ara-244816175/
+```

@@ -167,7 +167,7 @@ You could think of monetizing in at least 3 ways:
 :it:<br>
 Per il database come gia' detto utilizzo il servizio base di Cloud di [MongoDb](https://www.mongodb.com/it-it)<br>
 Per il deploy del backend il servizio gratuito base di [render.com](https://app.netlify.com/)<br>
-Per il deploy del frontend il servizio gratito base di [netlify.com](https://app.netlify.com/)<br>
+Per il deploy del frontend il servizio gratuito base di [netlify.com](https://app.netlify.com/)<br>
 Per il servizio di mail transictional il servizio base gratuito di [brevo.com](https://www.brevo.com/it/)<br>
 Per il servizio di mail usato in develpoment local mode il servizio gratuito base [mailtrap.io](https://mailtrap.io/)<br>
 

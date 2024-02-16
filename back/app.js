@@ -52,11 +52,12 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-const limiter = rateLimit({
-  max: 5000, //max request per hour
-  windowMs: 60 * 60 * 1000,
-  message: 'Too many request from this IP, please try again in an hour',
-}); // 429 Error
+// momentaneamente disabilitato - da verificare
+// const limiter = rateLimit({
+//   max: 5000, //max request per hour
+//   windowMs: 60 * 60 * 1000,
+//   message: 'Too many request from this IP, please try again in an hour',
+// }); // 429 Error
 
 // momentaneamente disabilitato - da verificare
 // app.use('/api', limiter);

@@ -58,7 +58,8 @@ const limiter = rateLimit({
   message: 'Too many request from this IP, please try again in an hour',
 }); // 429 Error
 
-app.use('/api', limiter);
+// momentaneamente disabilitato - da verificare
+// app.use('/api', limiter);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' })); // Middleware add the data from the body to the request object

@@ -164,26 +164,26 @@ You could think of monetizing in at least 3 ways:
 
 ## :tv: External Service
 
-:it:
-Per il database come gia' detto utilizzo il servizio base di Cloud di [MongoDb](https://www.mongodb.com/it-it)
-Per il deploy del backend il servizio gratuito base di [render.com](https://app.netlify.com/)
-Per il deploy del frontend il servizio gratito base di [netlify.com](https://app.netlify.com/)
-Per il servizio di mail transictional il servizio base gratuito di [brevo.com](https://www.brevo.com/it/)
-Per il servizio di mail usato in develpoment local mode il servizio gratuito base [mailtrap.io](https://mailtrap.io/)
+:it:<br>
+Per il database come gia' detto utilizzo il servizio base di Cloud di [MongoDb](https://www.mongodb.com/it-it)<br>
+Per il deploy del backend il servizio gratuito base di [render.com](https://app.netlify.com/)<br>
+Per il deploy del frontend il servizio gratito base di [netlify.com](https://app.netlify.com/)<br>
+Per il servizio di mail transictional il servizio base gratuito di [brevo.com](https://www.brevo.com/it/)<br>
+Per il servizio di mail usato in develpoment local mode il servizio gratuito base [mailtrap.io](https://mailtrap.io/)<br>
 
-:uk:
-For the database, as already mentioned, I use the basic Cloud service of [MongoDb](https://www.mongodb.com/it-it)
-For the deployment of the backend the free basic service of [render.com](https://app.netlify.com/)
-For the deployment of the frontend the free basic service of [netlify.com](https://app.netlify.com/)
-For the transitional email service, the free basic service of [brevo.com](https://www.brevo.com/it/)
-For the email service used in local development mode, the free basic service [mailtrap.io](https://mailtrap.io/)
+:uk:<br>
+For the database, as already mentioned, I use the basic Cloud service of [MongoDb](https://www.mongodb.com/it-it)<br>
+For the deployment of the backend the free basic service of [render.com](https://app.netlify.com/)<br>
+For the deployment of the frontend the free basic service of [netlify.com](https://app.netlify.com/)<br>
+For the transitional email service, the free basic service of [brevo.com](https://www.brevo.com/it/)<br>
+For the email service used in local development mode, the free basic service [mailtrap.io](https://mailtrap.io/)<br>
 
-if you want to immediately test the endpoints use this link for the test response from browser or with a GET:
+if you want to immediately test the endpoints use this link for the test response from browser or with a GET:<br>
 
-[test backend](https://s2i-study-buddy-hub-4coach.onrender.com/test)
+[test backend](https://s2i-study-buddy-hub-4coach.onrender.com/test)<br>
 
 if you want to immediately see the site :
-[test frontend](https://studybuddyhub.netlify.app/)
+[test frontend](https://studybuddyhub.netlify.app/)<br>
 
 ## :floppy_disk: Installation
 

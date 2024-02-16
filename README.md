@@ -1,3 +1,5 @@
+# :fire: version update
+
 v.1.0.6 limiter
 temporarily disabled to test for an inherent error <br>
 

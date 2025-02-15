@@ -211,7 +211,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const alreadyUser = await User.findOne({
     email: req.body.email,
   });
-
+  
   if (alreadyUser) {
     return next(
       new AppError(
@@ -241,10 +241,11 @@ exports.signup = catchAsync(async (req, res, next) => {
   <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
   <a href=${activeAccountURL}> Click here</a>
   </div><p>If you not subscribe at STUDY BUDDY HUB please ignore this email</p></body>`;
-
+  
   try {
     if (process.env.NODE_ENV === 'production') {
       console.log('sendmailprod');
+      console.log('dubug*************************');
 
       await sendEmailProd({
         email: newUser.email,

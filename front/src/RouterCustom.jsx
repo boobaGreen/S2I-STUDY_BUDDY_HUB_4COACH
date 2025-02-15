@@ -43,7 +43,16 @@ function RouterCustom() {
       });
     }
   }, [user, isAuth, jwtToken, dispatch]);
+ console.log("role in RouterCustom:", role);
+ console.log("isAuth in RouterCustom:", isAuth);
+ console.log("jwtToken in RouterCustom:", jwtToken);
+ console.log("user in RouterCustom:", user);
+ console.log("isLoadingG in RouterCustom:", isLoadingG);
+ console.log("errorG in RouterCustom:", errorG);
+ console.log("socketRef in RouterCustom:", socketRef.current);
+ console.log("socketRef.current in RouterCustom:", socketRef.current);
 
+ 
   const isAdmin = role === "admin" ? true : false;
   return (
     <BrowserRouter>

@@ -4,7 +4,7 @@
 
 :root {
   /* MAIN Color Table  */
-  --color-bg: #ccdf23;
+  --color-bg: #7D806AFF;
   --color-bg-dark: #0d2f25;
 
   --color-bg-trasparent-dark: rgba(13, 47, 37, 0.88);
@@ -13,7 +13,8 @@
   --color-text: #0d2f25;
   --color-text-dark: #fafafa;
   /* TAB Color Table */
-  --color-bg-tab: #d3c1d6;
+  --color-bg-tab: #9FAFA2FF; 
+ /* sopra piccola */
   --color-bg-tab-dark: #3c534d;
   --color-text-tab: #1f2937;
   --color-text-tab-dark: #f3f4f6;
